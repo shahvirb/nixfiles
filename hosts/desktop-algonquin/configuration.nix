@@ -108,6 +108,9 @@
 
     programs.git = {
       enable = true;
+      extraConfig = {
+        credential.helper = "oauth";
+      };
       userName = "Shahvir Buhariwalla";
       userEmail = "shahvirb@gmail.com";
     };
@@ -142,7 +145,9 @@
       };
     };
 
-    # wayland.windowManager.hyprland.enable = true;
+    wayland.windowManager.hyprland = {
+      enable = true;
+    };
   };
 
   # Enable automatic login for the user.
