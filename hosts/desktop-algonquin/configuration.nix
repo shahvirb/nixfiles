@@ -90,12 +90,13 @@
   home-manager.users.shahvirb = {
     home.stateVersion = "23.11";
 
-    home.packages = [
-      pkgs.discord
-      pkgs.firefox
-      pkgs.git-credential-oauth
-      pkgs.sublime4
-      pkgs.vscode
+    home.packages = with pkgs; [
+      discord
+      firefox
+      git-credential-oauth
+      spotify
+      sublime4
+      vscode
     ];
 
     programs.bash = {
@@ -147,6 +148,30 @@
 
     wayland.windowManager.hyprland = {
       enable = true;
+      settings = {
+        "$mod" = "SUPER";
+        bind =
+          [
+            "$mod, F, exec, firefox"
+          ]
+          ++ (
+            # workspaces
+            # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
+            builtins.concatLists (builtins.genList (
+                x: let
+                  ws = let
+                    c = (x + 1) / 10;
+                  in
+                    builtins.toString (x + 1 - (c * 10));
+                in [
+                  "$mod, ${ws}, workspace, ${toString (x + 1)}"
+                  "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+                ]
+              )
+              10)
+          );
+      };
+
     };
   };
 
