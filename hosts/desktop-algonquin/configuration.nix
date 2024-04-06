@@ -90,6 +90,7 @@
   home-manager.users.shahvirb = {
     imports = [
       ../../home-manager/shahvirb.nix
+      ../../home-manager/hyprland.nix
     ];
   };
 
