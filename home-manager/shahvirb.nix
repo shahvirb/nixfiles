@@ -7,6 +7,7 @@
     discord
     firefox
     git-credential-oauth
+    joplin-desktop
     spotify
     sublime4
     vscode
