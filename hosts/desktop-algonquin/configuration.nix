@@ -89,7 +89,7 @@
 
   home-manager.users.shahvirb = {
     imports = [
-      ./home.nix
+      ../../home-manager/shahvirb.nix
     ];
   };
 
