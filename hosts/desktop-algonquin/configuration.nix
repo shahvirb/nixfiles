@@ -51,6 +51,9 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  # This is needed for gnomeExtensions.appindicator
+  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
@@ -91,6 +94,7 @@
     imports = [
       ../../home-manager/shahvirb.nix
       ../../home-manager/firefox.nix
+      ../../home-manager/gnome.nix
       ../../home-manager/python.nix
       # ../../home-manager/hyprland.nix
     ];
