@@ -14,8 +14,15 @@
 
   boot.loader = {
     grub = {
-      enable = true;
       device = "/dev/sdb";
+      efiSupport = true;
+      enable = true;
+      extraEntries = ''
+        menuentry 'Windows' {
+          search.fs_uuid 8EE2-3BF6
+          chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+        }
+      '';
     };
   };
 
