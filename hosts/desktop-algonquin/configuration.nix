@@ -22,7 +22,14 @@
           search.fs_uuid 8EE2-3BF6
           chainloader /EFI/Microsoft/Boot/bootmgfw.efi
         }
+        menuentry 'Windows (/dev/nvme0n1p2)' --class windows --class os $menuentry_id_option 'osprober-efi-8EE2-3BF6' {
+             insmod part_gpt
+             insmod fat
+             search --no-floppy --fs-uuid --set=root 8EE2-3BF6
+             chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+         }
       '';
+      useOSProber = true;
     };
   };
 
