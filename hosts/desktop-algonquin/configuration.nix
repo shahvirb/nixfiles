@@ -25,7 +25,8 @@
              chainloader /EFI/Microsoft/Boot/bootmgfw.efi
          }
       '';
-      useOSProber = true;
+      # Disable os prober on this machine because it picks up the wrong windows install
+      # useOSProber = true;
     };
   };
 
