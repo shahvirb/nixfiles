@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    gnomeExtensions.appindicator
+    gnome.gnome-tweaks
     gnomeExtensions.dash-to-panel
     gnomeExtensions.gtile
     gnomeExtensions.vitals
