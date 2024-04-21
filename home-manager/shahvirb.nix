@@ -6,11 +6,13 @@
   home.packages = with pkgs; [
     discord
     firefox
+    git
     git-credential-oauth
     joplin-desktop
     spotify
     sublime4
     vscode
+    wget
   ];
 
   nixpkgs.config.allowUnfree = true;
