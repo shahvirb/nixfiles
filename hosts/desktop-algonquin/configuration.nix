@@ -32,7 +32,7 @@
 
   networking.hostName = "desktop-algonquin"; # Define your hostname.
   networking.networkmanager.enable = true;
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   time.timeZone = "America/Chicago";
 
@@ -47,12 +47,6 @@
     LC_PAPER = "en_US.UTF-8";
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
-  };
-
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    xkbVariant = "";
   };
 
   services.printing.enable = true;
@@ -89,10 +83,6 @@
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "shahvirb";
-
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
 
   environment.systemPackages = with pkgs; [
     git
