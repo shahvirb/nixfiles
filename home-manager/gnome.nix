@@ -9,7 +9,6 @@
       # `gnome-extensions list` for a list
       enabled-extensions = [
         "appindicatorsupport@rgcjonas.gmail.com"
-        "apps-menu@gnome-shell-extensions.gcampax.github.com"
         "dash-to-panel@jderose9.github.com"
         "gTile@vibou"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
