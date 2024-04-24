@@ -5,7 +5,12 @@ From a fresh or existing NixOS install:
 3. Clone this repo [into /etc/nixos](https://www.devgem.io/posts/how-to-clone-a-git-repository-into-an-existing-folder).
 4. Add a ```hosts/<machine-name>``` directory if it doesn't exist.
 5. Symlink/copy configuration.nix and hardware-configuration.nix. configuration.nix and hardware-configuration.nix in /etc/nixos should be symlinks to ```hosts/<machine-name>/*.nix``` files
-6. Try it. Run ```sudo nixos-rebuild switch```
+6. Some parts of this repo may require unstable packages:
+    ```
+    nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable
+    nix-channel --update
+    ```
+7. Try it. Run ```sudo nixos-rebuild switch```
 
 
 # Command Cheat Sheet

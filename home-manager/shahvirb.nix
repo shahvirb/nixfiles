@@ -1,24 +1,33 @@
 { config, pkgs, ... }:
+let
+  pkgsUnstable = import <nixpkgs-unstable> {
+    config = {
+      allowUnfree = true;  # Ensure unfree packages are allowed in this import
+      permittedInsecurePackages = [
+        "openssl-1.1.1w"
+      ];
+    };
+  };
 
-{
-  home.stateVersion = "23.11";
-
-  home.packages = with pkgs; [
+  unstablePackages = with pkgsUnstable; [
     discord
-    firefox
-    git
     git-credential-oauth
     joplin-desktop
     spotify
     sublime4
     vscode
-    wget
   ];
+in
+{
+  home.stateVersion = "23.11";
+
+  home.packages = with pkgs; [
+    firefox
+    git
+    wget
+  ] ++ unstablePackages;
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1w"
-  ];
 
   programs.bash = {
     enable = true;
