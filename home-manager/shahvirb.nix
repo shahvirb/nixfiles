@@ -46,5 +46,10 @@ in
     userEmail = "shahvirb@gmail.com";
   };
 
+  programs.zellij = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
   programs.home-manager.enable = true;
 }
