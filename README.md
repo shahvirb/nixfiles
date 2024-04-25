@@ -7,8 +7,8 @@ From a fresh or existing NixOS install:
 5. Symlink/copy configuration.nix and hardware-configuration.nix. configuration.nix and hardware-configuration.nix in /etc/nixos should be symlinks to ```hosts/<machine-name>/*.nix``` files
 6. Some parts of this repo may require unstable packages:
     ```
-    nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable
-    nix-channel --update
+    sudo nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable
+    sudo nix-channel --update
     ```
 7. Try it. Run ```sudo nixos-rebuild switch```
 
