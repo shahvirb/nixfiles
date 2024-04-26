@@ -14,6 +14,7 @@
       (import "${builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz}/nixos")
       ../../modules/common.nix
       ../../modules/gnome-system.nix
+      "${builtins.fetchGit { url = "https://github.com/9999years/nix-config.git"; }}/modules/usb-wakeup-disable.nix"
     ];
 
   boot.loader = {
@@ -55,6 +56,26 @@
       # ../../home-manager/hyprland.nix
     ];
   };
+
+  # Don't let USB devices wake the computer from sleep.
+  # To list all USB devices run nix-shell -p usbutils --run lsusb
+  hardware.usb.wakeupDisabled = [
+    {
+      # Topre Corporation LEO 98Keyboard
+      vendor = "0853";
+      product = "0138";
+    }
+    {
+      # Logitech, Inc. Lightspeed Receiver
+      vendor = "046d";
+      product = "c539";
+    }
+    {
+      # INSTANT USB GAMING MOUSE
+      vendor = "30fa";
+      product = "1340";
+    }
+  ];
 
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
