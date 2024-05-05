@@ -1,3 +1,3 @@
 # Ignore these files which are expected to be symlinks into files in the hosts/ directory
-configuration.nix
-hardware-configuration.nix
+/configuration.nix
+/hardware-configuration.nix
