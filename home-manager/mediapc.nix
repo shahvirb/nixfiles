@@ -11,6 +11,7 @@ let
 
   unstablePackages = with pkgsUnstable; [
     kodi
+    plex-media-player
     vlc
   ];
 in
