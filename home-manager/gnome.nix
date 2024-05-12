@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, enableDashToPanel ? true, ... }:
 
 {
   # Read https://hoverbear.org/blog/declarative-gnome-configuration-in-nixos/ for a good procedure on dconf watch
@@ -12,11 +12,10 @@
       # `gnome-extensions list` for a list
       enabled-extensions = [
         "appindicatorsupport@rgcjonas.gmail.com"
-        "dash-to-panel@jderose9.github.com"
         "gTile@vibou"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
         "Vitals@CoreCoding.com"
-      ];
+      ] ++ (if enableDashToPanel then["dash-to-panel@jderose9.github.com"] else []);
     };
   };
 
@@ -30,8 +29,7 @@
 
   home.packages = with pkgs; [
     gnome.gnome-tweaks
-    gnomeExtensions.dash-to-panel
     gnomeExtensions.gtile
     gnomeExtensions.vitals
-  ];
+  ] ++ (if enableDashToPanel then [gnomeExtensions.dash-to-panel] else []);
 }

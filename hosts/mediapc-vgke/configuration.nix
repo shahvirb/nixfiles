@@ -35,7 +35,7 @@
     imports = [
       ../../home-manager/shahvirb.nix
       ../../home-manager/firefox.nix
-      ../../home-manager/gnome.nix
+      (import ../../home-manager/gnome.nix { inherit pkgs; inherit config; enableDashToPanel = false; })
     ];
   };
 
