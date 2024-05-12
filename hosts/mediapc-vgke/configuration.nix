@@ -36,7 +36,13 @@
       ../../home-manager/shahvirb.nix
       ../../home-manager/firefox.nix
       (import ../../home-manager/gnome.nix { inherit pkgs; inherit config; enableDashToPanel = false; })
+      ../../home-manager/mediapc.nix
     ];
+  };
+
+
+  services.samba = {
+    enable = true;
   };
 
   # Enable automatic login for the user.

@@ -18,12 +18,4 @@ in
   home.packages = with pkgs; [
     cifs-utils
   ] ++ unstablePackages;
-
-  services.samba = {
-    enable = true;
-    client = {
-      enable = true;
-      # You can add client specific configurations here
-    };
-  };
 }
