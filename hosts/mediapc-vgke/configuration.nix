@@ -45,6 +45,18 @@
     enable = true;
   };
 
+  # Configuration for mounting the Samba share
+  fileSystems."/mnt/openmediavault/media" = {
+    device = "//openmediavault/Media";
+    fsType = "cifs";
+    options = [
+      "credentials=/etc/nixos/omv-credentials.secret"
+      "uid=1000"
+      "gid=100"
+      "rw"
+    ];
+  };
+
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "shahvirb";
