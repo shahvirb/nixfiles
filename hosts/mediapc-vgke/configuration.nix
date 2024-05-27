@@ -35,9 +35,12 @@
     imports = [
       ../../home-manager/shahvirb.nix
       ../../home-manager/firefox.nix
-      (import ../../home-manager/gnome.nix { inherit pkgs; inherit config; enableDashToPanel = false; })
+      ../../home-manager/gnome.nix
       ../../home-manager/mediapc.nix
     ];
+
+
+    services.my-gnome.enableDashToPanel = false;
   };
 
 
