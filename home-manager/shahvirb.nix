@@ -29,6 +29,13 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
+  home.sessionVariables = {
+    TERMINAL = "alacritty";
+  };
+
+  programs.alacritty.enable = true;
+  # Also read https://discourse.nixos.org/t/any-nix-darwin-nushell-users/37778
+
   programs.bash = {
     enable = true;
     shellAliases = {
@@ -48,7 +55,7 @@ in
 
   programs.zellij = {
     enable = true;
-    # enableBashIntegration = true;
+    enableBashIntegration = true;
   };
 
   programs.home-manager.enable = true;
