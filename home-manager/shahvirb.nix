@@ -53,6 +53,14 @@ in
     userEmail = "shahvirb@gmail.com";
   };
 
+  programs.ssh = {
+    enable = true;
+    extraConfig = ''
+      Host *
+          IdentityAgent ~/.1password/agent.sock
+    '';
+  };
+
   programs.zellij = {
     enable = true;
     enableBashIntegration = true;
