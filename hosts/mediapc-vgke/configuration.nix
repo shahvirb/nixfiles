@@ -34,12 +34,12 @@
 
   home-manager.users.shahvirb = {
     imports = [
+      ../../home-manager/1password.nix
       ../../home-manager/shahvirb.nix
       ../../home-manager/firefox.nix
       ../../home-manager/gnome.nix
       ../../home-manager/mediapc.nix
     ];
-
 
     services.my-gnome.enableDashToPanel = false;
   };
