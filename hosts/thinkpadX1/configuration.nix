@@ -10,6 +10,7 @@
       "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/lenovo/thinkpad/x1/7th-gen"
       ./hardware-configuration.nix
       (import "${builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz}/nixos")
+      ../../modules/1password.nix
       ../../modules/common.nix
       ../../modules/gnome-system.nix
     ];
