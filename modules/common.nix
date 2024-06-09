@@ -32,7 +32,6 @@ in
       # This is needed for VSCode remote support. Read: https://nixos.wiki/wiki/Visual_Studio_Code
       programs.nix-ld.enable = true;
     }
-
     (mkIf (cfg.hostType == "graphical") {
       networking.networkmanager.enable = true;
 
