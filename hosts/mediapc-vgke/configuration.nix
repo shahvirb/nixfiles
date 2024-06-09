@@ -1,9 +1,7 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
-
+let
+  HOST_TYPE = "graphical";
+in
 {
   # Do this first because the nixos-hardware.git nvidia import below needs it
   nixpkgs.config.allowUnfree = true;
@@ -18,7 +16,8 @@
       ../../modules/common.nix
       ../../modules/gnome-system.nix
     ];
-
+  
+  my-common.hostType = HOST_TYPE;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -40,6 +39,10 @@
       ../../home-manager/gnome.nix
       ../../home-manager/mediapc.nix
     ];
+
+    extraSpecialArgs = {
+      hostType = HOST_TYPE;
+    };
 
     services.my-gnome.enableDashToPanel = false;
   };

@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
-
+let
+  HOST_TYPE = "graphical";
+in
 {
   # Do this first because the nixos-hardware.git nvidia import below needs it
   nixpkgs.config.allowUnfree = true;
@@ -17,6 +19,8 @@
       ../../modules/gnome-system.nix
       "${builtins.fetchGit { url = "https://github.com/9999years/nix-config.git"; }}/modules/usb-wakeup-disable.nix"
     ];
+
+  my-common.hostType = HOST_TYPE;
 
   boot.loader = {
     grub = {
@@ -56,6 +60,10 @@
       ../../home-manager/gnome.nix
       ../../home-manager/python.nix
     ];
+
+    extraSpecialArgs = {
+      hostType = HOST_TYPE;
+    };
   };
 
   # Don't let USB devices wake the computer from sleep.

@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
-
+let
+  HOST_TYPE = "graphical";
+in
 {
   # Do this first because the nixos-hardware.git nvidia import below needs it
   nixpkgs.config.allowUnfree = true;
@@ -14,7 +16,8 @@
       ../../modules/common.nix
       ../../modules/gnome-system.nix
     ];
-
+  
+  my-common.hostType = HOST_TYPE;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -35,6 +38,10 @@
       ../../home-manager/gnome.nix
       ../../home-manager/python.nix
     ];
+
+    extraSpecialArgs = {
+      hostType = HOST_TYPE;
+    };
   };
 
   # Enable automatic login for the user.
