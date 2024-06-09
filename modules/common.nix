@@ -31,6 +31,9 @@ in
 
       # This is needed for VSCode remote support. Read: https://nixos.wiki/wiki/Visual_Studio_Code
       programs.nix-ld.enable = true;
+
+      services.openssh.enable = true;
+      services.tailscale.enable = true;
     }
     (mkIf (cfg.hostType == "graphical") {
       networking.networkmanager.enable = true;
