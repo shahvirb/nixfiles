@@ -34,9 +34,9 @@ in
 
       programs.git = {
         enable = true;
-        extraConfig = {
-          credential.helper = "oauth";
-        };
+        # extraConfig = {
+        #   credential.helper = "oauth";
+        # };
         userName = "Shahvir Buhariwalla";
         userEmail = "shahvirb@gmail.com";
       };
@@ -48,7 +48,6 @@ in
     (mkIf (hostType == "graphical") {
       home.packages = with pkgs; [
         firefox
-        git
         wget
       ] ++ unstablePackages;
 
@@ -59,6 +58,10 @@ in
       programs.alacritty.enable = true;
       # Also read https://discourse.nixos.org/t/any-nix-darwin-nushell-users/37778
 
+      programs.git.extraConfig = {
+        credential.helper = "oauth";
+      };
+      
       programs.zellij = {
         enable = true;
         enableBashIntegration = true;

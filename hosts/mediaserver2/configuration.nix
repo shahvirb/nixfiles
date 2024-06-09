@@ -11,11 +11,6 @@ in
 
   my-common.hostType = HOST_TYPE;
 
-  environment.systemPackages = [
-    pkgs.git
-    pkgs.git-credential-oauth
-  ];
-
   proxmoxLXC = {
     privileged = false;
     manageNetwork = false;
