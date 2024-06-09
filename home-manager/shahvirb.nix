@@ -1,4 +1,5 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, hostType, ... }:
+with lib;
 let
   pkgsUnstable = import <nixpkgs-unstable> {
     config = {
@@ -19,44 +20,49 @@ let
   ];
 in
 {
-  home.stateVersion = "23.11";
+  config = mkMerge [
+    {
+      home.stateVersion = "23.11";
 
-  home.packages = with pkgs; [
-    firefox
-    git
-    wget
-  ] ++ unstablePackages;
+      programs.bash = {
+        enable = true;
+        shellAliases = {
+          nrbb = "sudo nixos-rebuild boot";
+          nrbs = "sudo nixos-rebuild switch";
+        };
+      };
 
-  nixpkgs.config.allowUnfree = true;
+      programs.git = {
+        enable = true;
+        extraConfig = {
+          credential.helper = "oauth";
+        };
+        userName = "Shahvir Buhariwalla";
+        userEmail = "shahvirb@gmail.com";
+      };
 
-  home.sessionVariables = {
-    TERMINAL = "alacritty";
-  };
+      programs.home-manager.enable = true;
 
-  programs.alacritty.enable = true;
-  # Also read https://discourse.nixos.org/t/any-nix-darwin-nushell-users/37778
+      nixpkgs.config.allowUnfree = true;
+    }
+    (mkIf (hostType == "graphical") {
+      home.packages = with pkgs; [
+        firefox
+        git
+        wget
+      ] ++ unstablePackages;
 
-  programs.bash = {
-    enable = true;
-    shellAliases = {
-      nrbb = "sudo nixos-rebuild boot";
-      nrbs = "sudo nixos-rebuild switch";
-    };
-  };
+      home.sessionVariables = {
+        TERMINAL = "alacritty";
+      };
 
-  programs.git = {
-    enable = true;
-    extraConfig = {
-      credential.helper = "oauth";
-    };
-    userName = "Shahvir Buhariwalla";
-    userEmail = "shahvirb@gmail.com";
-  };
+      programs.alacritty.enable = true;
+      # Also read https://discourse.nixos.org/t/any-nix-darwin-nushell-users/37778
 
-  programs.zellij = {
-    enable = true;
-    enableBashIntegration = true;
-  };
-
-  programs.home-manager.enable = true;
+      programs.zellij = {
+        enable = true;
+        enableBashIntegration = true;
+      };
+    })
+  ];
 }
