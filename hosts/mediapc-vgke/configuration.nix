@@ -31,14 +31,16 @@ in
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  home-manager.users.shahvirb = {
-    imports = [
-      ../../home-manager/1password.nix
-      ../../home-manager/shahvirb.nix
-      ../../home-manager/firefox.nix
-      ../../home-manager/gnome.nix
-      ../../home-manager/mediapc.nix
-    ];
+  home-manager = {
+    users.shahvirb = {
+      imports = [
+        ../../home-manager/1password.nix
+        ../../home-manager/shahvirb.nix
+        ../../home-manager/firefox.nix
+        ../../home-manager/gnome.nix
+        ../../home-manager/mediapc.nix
+      ];
+    };
 
     extraSpecialArgs = {
       hostType = HOST_TYPE;
