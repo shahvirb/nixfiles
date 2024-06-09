@@ -19,7 +19,7 @@ in
 
   users.users.shahvirb = {
     description  = "shahvir";
-    extraGroups  = [ "wheel" "networkmanager" ];
+    extraGroups  = [ "wheel" "networkmanager" "docker"];
     isNormalUser  = true;
     openssh.authorizedKeys.keys  = [ "***REMOVED***" ];
     password = "root";
@@ -30,6 +30,7 @@ in
     users.shahvirb = {
       imports = [
         ../../home-manager/shahvirb.nix
+        ../../home-manager/mediaserver2.nix
       ];
     };
 
@@ -37,6 +38,8 @@ in
       hostType = HOST_TYPE;
     };
   };
+
+  virtualisation.docker.enable = true;
 
   system.stateVersion = "23.11";
 }
