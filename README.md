@@ -12,7 +12,6 @@ From a fresh or existing NixOS install:
     ```
 7. Try it. Run ```sudo nixos-rebuild switch```
 
-
 # Command Cheat Sheet
 Rebuild and switch now: ```sudo nixos-rebuild switch```
 
@@ -24,3 +23,23 @@ See the value of an option and how it's being set: ```nixos-option networking.ho
 Delete generations older than 2 days: ```sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 2d```. Can also be run with ```--dry-run```
 
 List generations: ```nix profile history --profile /nix/var/nix/profiles/system```
+
+# NixOS LXC in Proxmox
+
+## LXC Creation
+Based on:
+- https://www.jacob-swanson.com/tech/2023/09/19/nixos-proxmox-lxc-setup.html
+- https://nixos.wiki/wiki/Proxmox_Virtual_Environment
+
+1. Download a build here https://hydra.nixos.org/job/nixos/release-23.11/nixos.proxmoxLXC.x86_64-linux
+2. Create a CT but don't start it
+	1. Ensure an SSH key has been input because password based SSH authentication will not work
+3. Options -> features -> Enable nesting
+4. Set console mode to "console"
+5. Set ipv4 networking option to use a DHCP address
+6. Start it
+
+## After first boot
+1. ```nix-channel --update``` then reboot
+2. <mark style="background: #ff6666">DO NOT create a hardware-configuration.nix file!</mark> This is not needed.
+3. Read https://nixos.wiki/wiki/Proxmox_Virtual_Environment for a basic configuration.nix file
