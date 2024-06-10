@@ -17,6 +17,5 @@ let
 in
 {
   home.packages = with pkgs; [
-    cifs-utils
   ] ++ unstablePackages;
 }

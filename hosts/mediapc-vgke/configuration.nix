@@ -11,7 +11,7 @@ in
       "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/common/cpu/intel"
       "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/common/pc/ssd"
       ./hardware-configuration.nix
-      (import "${builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz}/nixos")
+      (import "${builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz}/nixos")
       ../../modules/1password.nix  
       ../../modules/common.nix
       ../../modules/gnome-system.nix
@@ -41,23 +41,28 @@ in
         ../../home-manager/gnome.nix
         ../../home-manager/mediapc.nix
       ];
+      services.my-gnome.enableDashToPanel = false;
     };
 
     extraSpecialArgs = {
       hostType = HOST_TYPE;
     };
-
-    services.my-gnome.enableDashToPanel = false;
   };
 
+  # # Enable Flatpak
+  # programs.flatpak.enable = true;
 
-  services.samba = {
-    enable = true;
-  };
+  # # Add the Flathub repository
+  # programs.flatpak.repositories = {
+  #   flathub = {
+  #     url = "https://flathub.org/repo/flathub.flatpakrepo";
+  #   };
+  # };
 
-  # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "shahvirb";
+  # # Install applications
+  # programs.flatpak.packages = [
+  #   "com.parsecgaming.parsec"
+  # ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

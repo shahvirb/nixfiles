@@ -11,7 +11,7 @@ in
       "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/lenovo/thinkpad/x1"
       "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/lenovo/thinkpad/x1/7th-gen"
       ./hardware-configuration.nix
-      (import "${builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz}/nixos")
+      (import "${builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz}/nixos")
       ../../modules/1password.nix
       ../../modules/common.nix
       ../../modules/gnome-system.nix
@@ -45,10 +45,6 @@ in
       hostType = HOST_TYPE;
     };
   };
-
-  # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "shahvirb";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
