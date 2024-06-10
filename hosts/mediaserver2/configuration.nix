@@ -21,7 +21,10 @@ in
     description  = "shahvir";
     extraGroups  = [ "wheel" "networkmanager" "docker"];
     isNormalUser  = true;
-    openssh.authorizedKeys.keys  = [ "***REMOVED***" ];
+    openssh.authorizedKeys.keys  = [
+      "***REMOVED***"
+      "***REMOVED***"
+    ];
     password = "root";
     uid = 1000;
   };
