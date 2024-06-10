@@ -19,4 +19,19 @@ in
   home.packages = with pkgs; [
     cifs-utils
   ] ++ unstablePackages;
+
+  # Enable Flatpak
+  programs.flatpak.enable = true;
+
+  # Add the Flathub repository
+  programs.flatpak.repositories = {
+    flathub = {
+      url = "https://flathub.org/repo/flathub.flatpakrepo";
+    };
+  };
+
+  # Install applications
+  programs.flatpak.packages = [
+    "com.parsecgaming.parsec"
+  ];
 }
