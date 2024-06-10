@@ -1,9 +1,7 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
-
+let
+  HOST_TYPE = "graphical";
+in
 {
   # Do this first because the nixos-hardware.git nvidia import below needs it
   nixpkgs.config.allowUnfree = true;
@@ -14,10 +12,13 @@
       "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/common/pc/ssd"
       ./hardware-configuration.nix
       (import "${builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz}/nixos")
+      ../../modules/1password.nix  
       ../../modules/common.nix
       ../../modules/gnome-system.nix
+      ../../modules/smb-openmediavault-mediaauthor.nix
     ];
-
+  
+  my-common.hostType = HOST_TYPE;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -31,38 +32,28 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  home-manager.users.shahvirb = {
-    imports = [
-      ../../home-manager/shahvirb.nix
-      ../../home-manager/firefox.nix
-      (import ../../home-manager/gnome.nix { inherit pkgs; inherit config; enableDashToPanel = false; })
-      ../../home-manager/mediapc.nix
-    ];
+  home-manager = {
+    users.shahvirb = {
+      imports = [
+        ../../home-manager/1password.nix
+        ../../home-manager/shahvirb.nix
+        ../../home-manager/firefox.nix
+        ../../home-manager/gnome.nix
+        ../../home-manager/mediapc.nix
+      ];
+    };
+
+    extraSpecialArgs = {
+      hostType = HOST_TYPE;
+    };
+
+    services.my-gnome.enableDashToPanel = false;
   };
 
 
   services.samba = {
     enable = true;
   };
-
-  # Configuration for mounting the Samba share
-  fileSystems."/mnt/openmediavault/media" = {
-    device = "//openmediavault/Media";
-    fsType = "cifs";
-    options = [
-      "credentials=/etc/nixos/omv-credentials.secret"
-      "uid=1000"
-      "gid=100"
-      "rw"
-    ];
-  };
-
-  # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "shahvirb";
-
-  services.openssh.enable = true;
-  services.tailscale.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
-
+let
+  HOST_TYPE = "graphical";
+in
 {
   # Do this first because the nixos-hardware.git nvidia import below needs it
   nixpkgs.config.allowUnfree = true;
@@ -12,10 +14,13 @@
       "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/common/pc/ssd"
       ./hardware-configuration.nix
       (import "${builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz}/nixos")
+      ../../modules/1password.nix
       ../../modules/common.nix
       ../../modules/gnome-system.nix
       "${builtins.fetchGit { url = "https://github.com/9999years/nix-config.git"; }}/modules/usb-wakeup-disable.nix"
     ];
+
+  my-common.hostType = HOST_TYPE;
 
   boot.loader = {
     grub = {
@@ -47,14 +52,20 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  home-manager.users.shahvirb = {
-    imports = [
-      ../../home-manager/shahvirb.nix
-      ../../home-manager/firefox.nix
-      ../../home-manager/gnome.nix
-      ../../home-manager/python.nix
-      # ../../home-manager/hyprland.nix
-    ];
+  home-manager = {
+    users.shahvirb = {
+      imports = [
+        ../../home-manager/1password.nix
+        ../../home-manager/shahvirb.nix
+        ../../home-manager/firefox.nix
+        ../../home-manager/gnome.nix
+        ../../home-manager/python.nix
+      ];
+    };
+
+    extraSpecialArgs = {
+      hostType = HOST_TYPE;
+    };
   };
 
   # Don't let USB devices wake the computer from sleep.
@@ -76,10 +87,6 @@
       product = "1340";
     }
   ];
-
-  # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "shahvirb";
 
   services.openssh.enable = false;
   services.tailscale.enable = false;
