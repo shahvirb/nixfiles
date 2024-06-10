@@ -47,12 +47,7 @@ in
       hostType = HOST_TYPE;
     };
 
-    services.my-gnome.enableDashToPanel = false;
-  };
-
-
-  services.samba = {
-    enable = true;
+    servies.my-gnome.enableDashToPanel = false;
   };
 
   # This value determines the NixOS release from which the default
