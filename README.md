@@ -39,7 +39,47 @@ Based on:
 5. Set ipv4 networking option to use a DHCP address
 6. Start it
 
-## After first boot
+### After first boot
 1. ```nix-channel --update``` then reboot
 2. <mark style="background: #ff6666">DO NOT create a hardware-configuration.nix file!</mark> This is not needed.
 3. Read https://nixos.wiki/wiki/Proxmox_Virtual_Environment for a basic configuration.nix file
+
+## iGPU Passthrough
+Read the tteck helper script, in particular this block:
+
+CT_TYPE is 0 for a privileged container, and 1 for unprivileged. Do ```ls /dev/d*``` to see what devices exist. Copy the relevant lines below into your LXC CT .conf file found in ```/etc/pve/lxc```.
+
+```bash
+
+  if [ "$CT_TYPE" == "0" ]; then
+    if [[ "$APP" == "Channels" || "$APP" == "Emby" || "$APP" == "Frigate" || "$APP" == "Jellyfin" || "$APP" == "Plex" || "$APP" == "Scrypted" || "$APP" == "Tdarr" || "$APP" == "Unmanic" ]]; then
+      cat <<EOF >>$LXC_CONFIG
+# VAAPI hardware transcoding
+lxc.cgroup2.devices.allow: c 226:0 rwm
+lxc.cgroup2.devices.allow: c 226:128 rwm
+lxc.cgroup2.devices.allow: c 29:0 rwm
+lxc.mount.entry: /dev/fb0 dev/fb0 none bind,optional,create=file
+lxc.mount.entry: /dev/dri dev/dri none bind,optional,create=dir
+lxc.mount.entry: /dev/dri/renderD128 dev/dri/renderD128 none bind,optional,create=file
+EOF
+    fi
+  else
+    if [[ "$APP" == "Channels" || "$APP" == "Emby" || "$APP" == "Frigate" || "$APP" == "Jellyfin" || "$APP" == "Plex" || "$APP" == "Scrypted" || "$APP" == "Tdarr" || "$APP" == "Unmanic" ]]; then
+      if [[ -e "/dev/dri/renderD128" ]]; then
+        if [[ -e "/dev/dri/card0" ]]; then
+          cat <<EOF >>$LXC_CONFIG
+# VAAPI hardware transcoding
+dev0: /dev/dri/card0,gid=44
+dev1: /dev/dri/renderD128,gid=104
+EOF
+        else
+          cat <<EOF >>$LXC_CONFIG
+# VAAPI hardware transcoding
+dev0: /dev/dri/card1,gid=44
+dev1: /dev/dri/renderD128,gid=104
+EOF
+        fi
+      fi
+    fi
+  fi
+```
