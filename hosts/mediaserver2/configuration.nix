@@ -43,6 +43,9 @@ in
     };
   };
 
+  # This is a container so we need to use userspace networking mode https://nixos.wiki/wiki/Tailscale
+  services.tailscale.interfaceName = "userspace-networking";
+
   virtualisation.docker.enable = true;
 
   system.stateVersion = "23.11";
