@@ -14,10 +14,11 @@ in
       "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/common/pc/ssd"
       ./hardware-configuration.nix
       (import "${builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz}/nixos")
+      "${builtins.fetchGit { url = "https://github.com/9999years/nix-config.git"; }}/modules/usb-wakeup-disable.nix"
       ../../modules/1password.nix
       ../../modules/common.nix
       ../../modules/gnome-system.nix
-      "${builtins.fetchGit { url = "https://github.com/9999years/nix-config.git"; }}/modules/usb-wakeup-disable.nix"
+      ../../modules/smb-openmediavault-mediaauthor.nix
     ];
 
   my-common.hostType = HOST_TYPE;
