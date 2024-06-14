@@ -34,7 +34,7 @@ in
       imports = [
         ../../home-manager/shahvirb.nix
         ../../home-manager/mediaserver2.nix
-        ../../home-manager/python.nix
+        ../../home-manager/vuetorrent.nix
       ];
     };
 
