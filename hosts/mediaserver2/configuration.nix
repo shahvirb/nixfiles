@@ -17,9 +17,15 @@ in
     manageHostName = false;
   };
 
+  users.groups = {
+    mediaauthor = {
+      gid = 1000;
+    };
+  };
+
   users.users.shahvirb = {
     description  = "shahvir";
-    extraGroups  = [ "wheel" "networkmanager" "docker"];
+    extraGroups  = [ "wheel" "networkmanager" "docker" "mediaauthor"];
     isNormalUser  = true;
     openssh.authorizedKeys.keys  = [
       "***REMOVED***"
