@@ -47,6 +47,7 @@ in
     }
     (mkIf (hostType == "graphical") {
       home.packages = with pkgs; [
+        dig
         firefox
         wget
       ] ++ unstablePackages;
