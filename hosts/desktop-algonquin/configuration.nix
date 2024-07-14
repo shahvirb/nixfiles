@@ -45,30 +45,6 @@ in
     };
   };
 
-  networking.hostName = "desktop-algonquin"; # Define your hostname.
-
-  users.users.shahvirb = {
-    isNormalUser = true;
-    description = "shahvir";
-    extraGroups = [ "networkmanager" "wheel" ];
-  };
-
-  home-manager = {
-    users.shahvirb = {
-      imports = [
-        ../../home-manager/1password.nix
-        ../../home-manager/shahvirb.nix
-        ../../home-manager/firefox.nix
-        ../../home-manager/gnome.nix
-        ../../home-manager/python.nix
-      ];
-    };
-
-    extraSpecialArgs = {
-      hostType = HOST_TYPE;
-    };
-  };
-
   # Don't let USB devices wake the computer from sleep.
   # To list all USB devices run nix-shell -p usbutils --run lsusb
   hardware.usb.wakeupDisabled = [
@@ -88,6 +64,31 @@ in
       product = "1340";
     }
   ];
+
+  users.users.shahvirb = {
+    isNormalUser = true;
+    description = "shahvir";
+    extraGroups = [ "networkmanager" "wheel" ];
+  };
+
+  home-manager = {
+    users.shahvirb = {
+      imports = [
+        ../../home-manager/1password.nix
+        ../../home-manager/desktop-algonquin.nix
+        ../../home-manager/shahvirb.nix
+        ../../home-manager/firefox.nix
+        ../../home-manager/gnome.nix
+        ../../home-manager/python.nix
+      ];
+    };
+
+    extraSpecialArgs = {
+      hostType = HOST_TYPE;
+    };
+  };
+
+  networking.hostName = "desktop-algonquin"; # Define your hostname.
 
   services.openssh.enable = false;
   services.tailscale.enable = false;
