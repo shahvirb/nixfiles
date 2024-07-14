@@ -12,5 +12,6 @@ let
 in
 {
   home.packages = with pkgs; [
+    popsicle # For making bootable USBs
   ] ++ unstablePackages;
 }
