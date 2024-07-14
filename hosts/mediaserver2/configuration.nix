@@ -39,7 +39,6 @@ in
     users.shahvirb = {
       imports = [
         ../../home-manager/shahvirb.nix
-        ../../home-manager/mediaserver2.nix
         ../../home-manager/vuetorrent.nix
       ];
     };
