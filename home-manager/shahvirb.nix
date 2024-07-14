@@ -10,7 +10,7 @@ let
     };
   };
 
-  unstablePackages = with pkgsUnstable; [
+  unstablePackagesGraphical = with pkgsUnstable; [
     discord
     git-credential-oauth
     joplin-desktop
@@ -22,6 +22,11 @@ in
 {
   config = mkMerge [
     {
+      home.packages = with pkgs; [
+        dig
+        wget
+      ];
+
       home.stateVersion = "23.11";
 
       programs.bash = {
@@ -47,10 +52,8 @@ in
     }
     (mkIf (hostType == "graphical") {
       home.packages = with pkgs; [
-        dig
         firefox
-        wget
-      ] ++ unstablePackages;
+      ] ++ unstablePackagesGraphical;
 
       home.sessionVariables = {
         TERMINAL = "alacritty";
