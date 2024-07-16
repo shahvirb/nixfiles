@@ -11,7 +11,7 @@ let
   };
 
   unstablePackagesGraphical = with pkgsUnstable; [
-    discord
+    armcord
     git-credential-oauth
     joplin-desktop
     spotify
