@@ -7,11 +7,13 @@ let
   };
 
   unstablePackages = with pkgsUnstable; [
+    brave
     zoom-us
   ];
 in
 {
   home.packages = with pkgs; [
+    gh
     popsicle # For making bootable USBs
   ] ++ unstablePackages;
 }
