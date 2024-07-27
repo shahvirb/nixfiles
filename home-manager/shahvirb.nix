@@ -12,7 +12,9 @@ let
 
   unstablePackagesGraphical = with pkgsUnstable; [
     armcord
+    brave
     git-credential-oauth
+    google-chrome
     joplin-desktop
     spotify
     sublime4
@@ -52,7 +54,6 @@ in
     }
     (mkIf (hostType == "graphical") {
       home.packages = with pkgs; [
-        firefox
       ] ++ unstablePackagesGraphical;
 
       home.sessionVariables = {
