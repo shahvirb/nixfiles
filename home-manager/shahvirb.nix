@@ -33,9 +33,16 @@ in
 
       programs.bash = {
         enable = true;
+        initExtra = ''
+          nixclean() {
+            sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than "$1"
+            sudo nix-collect-garbage --delete-older-than "$1"
+          }
+        '';
         shellAliases = {
           nrbb = "sudo nixos-rebuild boot";
           nrbs = "sudo nixos-rebuild switch";
+          nrbsu = "sudo nixos-rebuild switch --upgrade";
         };
       };
 

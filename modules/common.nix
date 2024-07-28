@@ -27,6 +27,12 @@ in
         LC_TIME = "en_US.UTF-8";
       };
 
+      nix.gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 30d";
+      };
+
       time.timeZone = "America/Chicago";
 
       # This is needed for VSCode remote support. Read: https://nixos.wiki/wiki/Visual_Studio_Code
