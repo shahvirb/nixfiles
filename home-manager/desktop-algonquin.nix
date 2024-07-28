@@ -7,7 +7,6 @@ let
   };
 
   unstablePackages = with pkgsUnstable; [
-    brave
     zoom-us
   ];
 in
