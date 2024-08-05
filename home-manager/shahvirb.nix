@@ -26,6 +26,7 @@ in
     {
       home.packages = with pkgs; [
         dig
+        micro
         wget
       ];
 
@@ -77,6 +78,11 @@ in
       programs.zellij = {
         enable = true;
         enableBashIntegration = true;
+        settings = {
+          pane_frames = false;
+          session_serialization = false;
+          ui.pane_frames.hide_session_name = true;
+        };
       };
     })
   ];
