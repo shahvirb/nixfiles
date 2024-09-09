@@ -43,7 +43,7 @@ in
         shellAliases = {
           nrbb = "sudo nixos-rebuild boot";
           nrbs = "sudo nixos-rebuild switch";
-          nrbsu = "sudo nixos-rebuild switch --upgrade";
+          nrbsu = "sudo nix-channel --update && sudo nixos-rebuild switch --upgrade";
         };
       };
 
