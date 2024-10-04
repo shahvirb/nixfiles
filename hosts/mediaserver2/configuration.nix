@@ -3,10 +3,13 @@ let
   HOST_TYPE = "lxc";
 in
 {
+  nixpkgs.config.allowUnfree = true;
+
   imports = [
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
     (import "${builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz}/nixos")
     ../../modules/common.nix
+    ../../modules/1password.nix
   ];
 
   my-common.hostType = HOST_TYPE;
@@ -38,6 +41,7 @@ in
   home-manager = {
     users.shahvirb = {
       imports = [
+        ../../home-manager/1password.nix
         ../../home-manager/shahvirb.nix
         ../../home-manager/vuetorrent.nix
       ];
