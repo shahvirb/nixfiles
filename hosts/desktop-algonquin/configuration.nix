@@ -91,7 +91,7 @@ in
   networking.hostName = "desktop-algonquin"; # Define your hostname.
 
   services.openssh.enable = false;
-  services.tailscale.enable = false;
+  services.tailscale.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
