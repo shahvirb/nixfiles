@@ -2,7 +2,7 @@
 {
   environment.systemPackages = [ pkgs.samba4Full ];
   fileSystems."/mnt/Media" = {
-    device = "//openmediavault.home.lab/Media";
+    device = "//openmediavault/Media";
     fsType = "cifs";
     # options = let
     #   automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
