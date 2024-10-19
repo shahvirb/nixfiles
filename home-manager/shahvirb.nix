@@ -11,11 +11,11 @@ let
   };
 
   unstablePackagesGraphical = with pkgsUnstable; [
-    armcord
     brave
     git-credential-oauth
     google-chrome
     joplin-desktop
+    legcord
     spotify
     sublime4
     vscode
