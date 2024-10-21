@@ -4,3 +4,4 @@
 
 # secrets
 omv-mediaauthor.secrets
+modules/sshkeys.nix
