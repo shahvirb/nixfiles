@@ -7,6 +7,7 @@ in
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
     (import "${builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz}/nixos")
     ../../modules/common.nix
+    ../../modules/sshkeys.nix
   ];
 
   my-common.hostType = HOST_TYPE;
@@ -21,9 +22,6 @@ in
     description  = "shahvir";
     extraGroups  = [ "wheel" "networkmanager" "docker"];
     isNormalUser  = true;
-    openssh.authorizedKeys.keys  = [
-      "***REMOVED***"
-    ];
     password = "root";
     uid = 1000;
   };
