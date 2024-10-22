@@ -10,6 +10,7 @@ in
     (import "${builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz}/nixos")
     ../../modules/common.nix
     ../../modules/1password.nix
+    ../../modules/sshkeys.nix
   ];
 
   my-common.hostType = HOST_TYPE;
@@ -30,10 +31,6 @@ in
     description  = "shahvir";
     extraGroups  = [ "wheel" "networkmanager" "docker" "mediaauthor"];
     isNormalUser  = true;
-    openssh.authorizedKeys.keys  = [
-      "***REMOVED***"
-      "***REMOVED***"
-    ];
     password = "root";
     uid = 1000;
   };
