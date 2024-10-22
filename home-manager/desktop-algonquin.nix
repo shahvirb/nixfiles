@@ -13,6 +13,7 @@ in
 {
   home.packages = with pkgs; [
     gh
+    git-filter-repo
     popsicle # For making bootable USBs
     sqlitebrowser
   ] ++ unstablePackages;
