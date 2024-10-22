@@ -1,3 +1,4 @@
+# https://nixos.wiki/wiki/1Password
 { config, pkgs, ... }:
 
 {
