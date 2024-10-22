@@ -42,6 +42,7 @@ in
     users.shahvirb = {
       imports = [
         ../../home-manager/1password.nix
+        ../../home-manager/mediaserver2.nix
         ../../home-manager/shahvirb.nix
         ../../home-manager/vuetorrent.nix
       ];
