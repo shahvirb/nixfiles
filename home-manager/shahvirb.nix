@@ -16,6 +16,7 @@ let
     google-chrome
     joplin-desktop
     legcord
+    protonvpn-gui
     spotify
     sublime4
     vscode
