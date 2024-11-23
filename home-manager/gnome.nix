@@ -16,6 +16,7 @@ in
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
       };
+
       "org/gnome/shell" = {
         disable-user-extensions = false;
 
@@ -26,6 +27,39 @@ in
           "user-theme@gnome-shell-extensions.gcampax.github.com"
           "Vitals@CoreCoding.com"
         ] ++ (if cfg.enableDashToPanel then ["dash-to-panel@jderose9.github.com"] else []);
+      };
+
+      "org/gnome/settings-daemon/plugins/media-keys" = {
+        custom-keybindings = [
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/browser/"
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal/"
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/vscode/"
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/vscode-nixos/"
+        ];
+      };
+
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/browser" = {
+        binding = "<Ctrl><Alt>t";
+        command = "brave";
+        name = "Launch Browser";
+      };
+
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal" = {
+        binding = "<Ctrl><Alt>t";
+        command = "alacritty";
+        name = "Launch Terminal";
+      };
+
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/vscode" = {
+        binding = "<Ctrl><Alt>v";
+        command = "code";
+        name = "Launch VSCode";
+      };
+
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/vscode-nixos" = {
+        binding = "<Ctrl><Alt>n";
+        command = "code /etc/nixos";
+        name = "Launch VSCode /etc/nixos";
       };
     };
 
