@@ -39,7 +39,7 @@ in
       };
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/browser" = {
-        binding = "<Ctrl><Alt>t";
+        binding = "<Ctrl><Alt>b";
         command = "brave";
         name = "Launch Browser";
       };
