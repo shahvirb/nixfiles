@@ -14,6 +14,13 @@ in
 
   config = mkMerge [
     {
+      nix = {
+        package = pkgs.nixFlakes;
+        extraOptions = ''
+          experimental-features = nix-command flakes
+        '';
+      };
+
       i18n.defaultLocale = "en_US.UTF-8";
       i18n.extraLocaleSettings = {
         LC_ADDRESS = "en_US.UTF-8";
@@ -44,9 +51,9 @@ in
     (mkIf (cfg.hostType == "graphical") {
       networking.networkmanager.enable = true;
 
-      nix.extraOptions = ''
-        experimental-features = nix-command
-      '';
+      # nix.extraOptions = ''
+      #   experimental-features = nix-command
+      # '';
 
       # Disable if printing is not needed
       services.printing.enable = true;
