@@ -17,8 +17,8 @@ in
 
   proxmoxLXC = {
     privileged = false;
-    manageNetwork = true;
-    manageHostName = true;
+    manageNetwork = false;
+    manageHostName = false;
   };
 
   users.users.shahvirb = {
@@ -41,8 +41,6 @@ in
       hostType = HOST_TYPE;
     };
   };
-
-  networking.hostName = "argon";
 
   virtualisation.docker.enable = true;
 
