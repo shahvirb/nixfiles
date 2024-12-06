@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, systemSettings, userSettings, ... }:
 with lib;
 let
   cfg = config.my-common;
@@ -21,17 +21,17 @@ in
         '';
       };
 
-      i18n.defaultLocale = "en_US.UTF-8";
+      i18n.defaultLocale = systemSettings.locale;
       i18n.extraLocaleSettings = {
-        LC_ADDRESS = "en_US.UTF-8";
-        LC_IDENTIFICATION = "en_US.UTF-8";
-        LC_MEASUREMENT = "en_US.UTF-8";
-        LC_MONETARY = "en_US.UTF-8";
-        LC_NAME = "en_US.UTF-8";
-        LC_NUMERIC = "en_US.UTF-8";
-        LC_PAPER = "en_US.UTF-8";
-        LC_TELEPHONE = "en_US.UTF-8";
-        LC_TIME = "en_US.UTF-8";
+        LC_ADDRESS = systemSettings.locale;
+        LC_IDENTIFICATION = systemSettings.locale;
+        LC_MEASUREMENT = systemSettings.locale;
+        LC_MONETARY = systemSettings.locale;
+        LC_NAME = systemSettings.locale;
+        LC_NUMERIC = systemSettings.locale;
+        LC_PAPER = systemSettings.locale;
+        LC_TELEPHONE = systemSettings.locale;
+        LC_TIME = systemSettings.locale;
       };
 
       nix.gc = {
@@ -40,7 +40,7 @@ in
         options = "--delete-older-than 30d";
       };
 
-      time.timeZone = "America/Chicago";
+      time.timeZone = systemSettings.timezone;
 
       # This is needed for VSCode remote support. Read: https://nixos.wiki/wiki/Visual_Studio_Code
       programs.nix-ld.enable = true;
