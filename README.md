@@ -19,6 +19,8 @@ Upgrade packages and switch: ```sudo nixos-rebuild switch --upgrade```
 
 See the value of an option and how it's being set: ```nixos-option networking.hostName```
 
+[Using the Nix repl to see options and values](https://jorel.dev/NixOS4Noobs/options.html#method-3-using-the-nix-repl)
+
 ## Cleaning up old generations
 Delete generations older than 2 days: ```sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 2d```. Can also be run with ```--dry-run```
 
