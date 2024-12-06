@@ -16,10 +16,10 @@
       };
 
       # ----- USER SETTINGS ----- #
-      # userSettings = rec {
-      #   username = "emmet"; # username
-      #   name = "Emmet"; # name/identifier
-      #   email = "emmet@librephoenix.com"; # email (used for certain configurations)
+      userSettings = rec {
+        username = "shahvirb"; # username
+        name = "Shahvir"; # name/identifier
+        email = "shahvirb@gmail.com"; # email (used for certain configurations)
       #   dotfilesDir = "~/.dotfiles"; # absolute path of the local repo
       #   theme = "uwunicorn-yt"; # selcted theme from my themes directory (./themes/)
       #   wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
@@ -44,15 +44,15 @@
       #                          "exec " + term + " -e " + editor
       #                    else
       #                      editor);
-      # };
+      };
 
       # create patched nixpkgs
-      # nixpkgs-patched =
-      #   (import inputs.nixpkgs { system = systemSettings.system; }).applyPatches {
-      #     name = "nixpkgs-patched";
-      #     src = inputs.nixpkgs;
-      #     patches = [ ./patches/emacs-no-version-check.patch ];
-      #   };
+      nixpkgs-patched =
+        (import inputs.nixpkgs { system = systemSettings.system; }).applyPatches {
+          name = "nixpkgs-patched";
+          src = inputs.nixpkgs;
+          patches = [ ./patches/emacs-no-version-check.patch ];
+        };
 
       # configure pkgs
       # use nixpkgs if running a server (homelab or worklab profile)
@@ -238,9 +238,9 @@
 
   #   rust-overlay.url = "github:oxalica/rust-overlay";
 
-  #   blocklist-hosts = {
-  #     url = "github:StevenBlack/hosts";
-  #     flake = false;
-  #   };
-  # };
+    # blocklist-hosts = {
+    #   url = "github:StevenBlack/hosts";
+    #   flake = false;
+    # };
+  };
 }
