@@ -31,7 +31,7 @@
     users.${userSettings.username} = {
       imports = [
         ../../home-manager/shahvirb.nix
-        ../../home-manager/argon.nix
+        ./home.nix
       ];
     };
 
