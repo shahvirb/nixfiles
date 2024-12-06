@@ -36,7 +36,11 @@
     };
 
     extraSpecialArgs = {
-      hostType = systemSettings.hostType;
+      # pass config variables from above
+      # inherit pkgs-stable;
+      inherit systemSettings;
+      inherit userSettings;
+      # inherit inputs;
     };
   };
 

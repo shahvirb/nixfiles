@@ -1,4 +1,4 @@
-{ config, lib, pkgs, hostType, ... }:
+{ config, lib, pkgs, systemSettings, userSettings, ... }:
 with lib;
 let
   pkgsUnstable = import <nixpkgs-unstable> {
@@ -62,7 +62,7 @@ in
 
       nixpkgs.config.allowUnfree = true;
     }
-    (mkIf (hostType == "graphical") {
+    (mkIf (systemSettings.hostType == "graphical") {
       home.packages = with pkgs; [
       ] ++ unstablePackagesGraphical;
 
