@@ -1,4 +1,4 @@
-{ pkgs, modulesPath, ... }:
+{ pkgs, modulesPath, userSettings, ... }:
 let
   HOST_TYPE = "lxc";
 in
@@ -25,8 +25,8 @@ in
     manageHostName = false;
   };
 
-  users.users.shahvirb = {
-    description  = "shahvir";
+  users.users.${userSettings.username} = {
+    description  = userSettings.name;
     extraGroups  = [ "wheel" "networkmanager" "docker"];
     isNormalUser  = true;
     password = "root";
@@ -34,7 +34,7 @@ in
   };
 
   home-manager = {
-    users.shahvirb = {
+    users.${userSettings.username} = {
       imports = [
         ../../home-manager/shahvirb.nix
         ../../home-manager/argon.nix
