@@ -7,7 +7,7 @@
       systemSettings = {
         system = "x86_64-linux"; # system arch
         hostname = "argon"; # hostname
-        profile = "personal"; # select a profile defined from my profiles directory
+        profile = "homelab"; # select a profile defined from my profiles directory
         timezone = "America/Chicago"; # select timezone
         locale = "en_US.UTF-8"; # select locale
         # bootMode = "uefi"; # uefi or bios
@@ -133,7 +133,7 @@
       # };
       
       nixosConfigurations = {
-        system = lib.nixosSystem {
+        "${systemSettings.hostname}" = lib.nixosSystem {
           system = systemSettings.system;
           modules = [
             (./. + "/hosts" + ("/" + systemSettings.hostname) + "/configuration.nix")
