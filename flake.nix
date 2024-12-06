@@ -8,6 +8,7 @@
         system = "x86_64-linux"; # system arch
         hostname = "argon"; # hostname
         profile = "homelab"; # select a profile defined from my profiles directory
+        hostType = "lxc";
         timezone = "America/Chicago"; # select timezone
         locale = "en_US.UTF-8"; # select locale
         # bootMode = "uefi"; # uefi or bios
@@ -137,7 +138,7 @@
           system = systemSettings.system;
           modules = [
             (./. + "/hosts" + ("/" + systemSettings.hostname) + "/configuration.nix")
-          ]; # load configuration.nix from selected PROFILE
+          ];
           specialArgs = {
             # pass config variables from above
             inherit pkgs-stable;

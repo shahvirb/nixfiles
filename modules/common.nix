@@ -1,17 +1,7 @@
 { config, lib, pkgs, systemSettings, userSettings, ... }:
 with lib;
-let
-  cfg = config.my-common;
-in
-{
-  options.my-common = {
-    hostType = mkOption {
-      type = types.enum [ "lxc" "graphical" ];
-      default = "graphical";
-      description = "Type of host: either 'lxc' or 'graphical'.";
-    };
-  };
 
+{
   config = mkMerge [
     {
       nix = {
@@ -48,7 +38,7 @@ in
       services.openssh.enable = mkDefault true;
       services.tailscale.enable = mkDefault true;
     }
-    (mkIf (cfg.hostType == "graphical") {
+    (mkIf (systemSettings.hostType == "graphical") {
       networking.networkmanager.enable = true;
 
       # nix.extraOptions = ''
@@ -69,7 +59,7 @@ in
         pulse.enable = true;
       };
     })
-    (mkIf (cfg.hostType == "lxc") {
+    (mkIf (systemSettings.hostType == "lxc") {
       # This is a container so we need to use userspace networking mode https://nixos.wiki/wiki/Tailscale
       services.tailscale.interfaceName = "userspace-networking";
     })

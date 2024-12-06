@@ -1,7 +1,4 @@
-{ pkgs, modulesPath, userSettings, ... }:
-let
-  HOST_TYPE = "lxc";
-in
+{ pkgs, modulesPath, systemSettings, userSettings, ... }:
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -15,9 +12,6 @@ in
     ../../modules/1password.nix
     ../../modules/sshkeys.nix
   ];
-
-
-  my-common.hostType = HOST_TYPE;
 
   proxmoxLXC = {
     privileged = false;
@@ -42,7 +36,7 @@ in
     };
 
     extraSpecialArgs = {
-      hostType = HOST_TYPE;
+      hostType = systemSettings.hostType;
     };
   };
 
