@@ -17,8 +17,8 @@ in
 
   proxmoxLXC = {
     privileged = false;
-    manageNetwork = false;
-    manageHostName = false;
+    manageNetwork = true;
+    manageHostName = true;
   };
 
   users.users.shahvirb = {
@@ -33,6 +33,7 @@ in
     users.shahvirb = {
       imports = [
         ../../home-manager/shahvirb.nix
+        ../../home-manager/argon.nix
       ];
     };
 
@@ -40,6 +41,8 @@ in
       hostType = HOST_TYPE;
     };
   };
+
+  networking.hostName = "argon";
 
   virtualisation.docker.enable = true;
 

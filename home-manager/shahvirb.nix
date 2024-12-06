@@ -27,6 +27,7 @@ in
     {
       home.packages = with pkgs; [
         dig
+        gh
         micro
         wget
       ];
