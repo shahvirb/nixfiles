@@ -1,10 +1,6 @@
 {
   description = "System configuration flake";
 
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-  };
-
   outputs = { self, nixpkgs, ... }:
     let
       lib = nixpkgs.lib;
@@ -16,4 +12,12 @@
         };
       };
     };
+
+  inputs = {
+    nixpkgs.url = "nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+
+    home-manager-stable.url = "github:nix-community/home-manager/release-24.05";
+    home-manager-stable.inputs.nixpkgs.follows = "nixpkgs";
+  };
 }
