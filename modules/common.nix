@@ -3,12 +3,6 @@ with lib;
 {
   config = mkMerge [
     {
-      nix = {
-        extraOptions = ''
-          experimental-features = nix-command flakes
-        '';
-      };
-
       i18n.defaultLocale = systemSettings.locale;
       i18n.extraLocaleSettings = {
         LC_ADDRESS = systemSettings.locale;
@@ -22,10 +16,16 @@ with lib;
         LC_TIME = systemSettings.locale;
       };
 
-      nix.gc = {
-        automatic = true;
-        dates = "weekly";
-        options = "--delete-older-than 30d";
+      nix = {
+        extraOptions = ''
+          experimental-features = nix-command flakes
+        '';
+
+        gc = {
+          automatic = true;
+          dates = "weekly";
+          options = "--delete-older-than 30d";
+        };
       };
 
       time.timeZone = systemSettings.timezone;
@@ -35,6 +35,14 @@ with lib;
 
       services.openssh.enable = mkDefault true;
       services.tailscale.enable = mkDefault true;
+
+      users.users.${userSettings.username} = {
+        description  = userSettings.name;
+        extraGroups  = [ "wheel" "networkmanager"];
+        isNormalUser  = true;
+        password = "root";
+        uid = 1000;
+      };
     }
     (mkIf (systemSettings.profile == "graphical") {
       networking.networkmanager.enable = true;

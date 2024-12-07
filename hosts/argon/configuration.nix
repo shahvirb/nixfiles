@@ -20,14 +20,6 @@
     manageHostName = false;
   };
 
-  users.users.${userSettings.username} = {
-    description  = userSettings.name;
-    extraGroups  = [ "wheel" "networkmanager"];
-    isNormalUser  = true;
-    password = "root";
-    uid = 1000;
-  };
-
   home-manager = {
     users.${userSettings.username} = {
       imports = [
