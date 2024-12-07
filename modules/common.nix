@@ -38,7 +38,7 @@ with lib;
       services.openssh.enable = mkDefault true;
       services.tailscale.enable = mkDefault true;
     }
-    (mkIf (systemSettings.hostType == "graphical") {
+    (mkIf (systemSettings.profile == "graphical") {
       networking.networkmanager.enable = true;
 
       # nix.extraOptions = ''
@@ -59,7 +59,7 @@ with lib;
         pulse.enable = true;
       };
     })
-    (mkIf (systemSettings.hostType == "lxc") {
+    (mkIf (systemSettings.profile == "lxc") {
       # This is a container so we need to use userspace networking mode https://nixos.wiki/wiki/Tailscale
       services.tailscale.interfaceName = "userspace-networking";
     })

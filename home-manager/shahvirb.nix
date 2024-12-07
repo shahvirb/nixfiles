@@ -62,7 +62,7 @@ in
 
       nixpkgs.config.allowUnfree = true;
     }
-    (mkIf (systemSettings.hostType == "graphical") {
+    (mkIf (systemSettings.profile == "graphical") {
       home.packages = with pkgs; [
       ] ++ unstablePackagesGraphical;
 

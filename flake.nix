@@ -7,8 +7,7 @@
       systemSettings = {
         system = "x86_64-linux"; # system arch
         hostname = "argon"; # hostname
-        profile = "homelab"; # select a profile defined from my profiles directory
-        hostType = "lxc";
+        profile = "lxc";
         timezone = "America/Chicago"; # select timezone
         locale = "en_US.UTF-8"; # select locale
         # bootMode = "uefi"; # uefi or bios
@@ -49,16 +48,16 @@
 
       # create patched nixpkgs
       nixpkgs-patched =
-        (import inputs.nixpkgs { system = systemSettings.system; }).applyPatches {
+        (import inputs.nixpkgs-unstable { system = systemSettings.system; }).applyPatches {
           name = "nixpkgs-patched";
-          src = inputs.nixpkgs;
+          src = inputs.nixpkgs-unstable;
           patches = [ ./patches/emacs-no-version-check.patch ];
         };
 
       # configure pkgs
-      # use nixpkgs if running a server (homelab or worklab profile)
+      # use nixpkgs if running a server (lxc profile)
       # otherwise use patched nixos-unstable nixpkgs
-      pkgs = (if ((systemSettings.profile == "homelab") || (systemSettings.profile == "worklab"))
+      pkgs = (if (systemSettings.profile == "lxc")
               then
                 pkgs-stable
               else
@@ -88,17 +87,17 @@
       # };
 
       # configure lib
-      # use nixpkgs if running a server (homelab or worklab profile)
+      # use nixpkgs if running a server (lxc profile)
       # otherwise use patched nixos-unstable nixpkgs
-      lib = (if ((systemSettings.profile == "homelab") || (systemSettings.profile == "worklab"))
+      lib = (if (systemSettings.profile == "lxc")
              then
                inputs.nixpkgs-stable.lib
              else
-               inputs.nixpkgs.lib);
+               inputs.nixpkgs-unstable.lib);
 
-      # use home-manager-stable if running a server (homelab or worklab profile)
+      # use home-manager-stable if running a server (lxc profile)
       # otherwise use home-manager-unstable
-      home-manager = (if ((systemSettings.profile == "homelab") || (systemSettings.profile == "worklab"))
+      home-manager = (if (systemSettings.profile == "lxc")
              then
                inputs.home-manager-stable
              else
@@ -172,13 +171,14 @@
     };
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+
     # emacs-pin-nixpkgs.url = "nixpkgs/f72123158996b8d4449de481897d855bc47c7bf6";
     # kdenlive-pin-nixpkgs.url = "nixpkgs/cfec6d9203a461d9d698d8a60ef003cac6d0da94";
 
     home-manager-unstable.url = "github:nix-community/home-manager/master";
-    home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     home-manager-stable.url = "github:nix-community/home-manager/release-24.05";
     home-manager-stable.inputs.nixpkgs.follows = "nixpkgs-stable";
