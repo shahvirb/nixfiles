@@ -54,8 +54,8 @@ in
         # extraConfig = {
         #   credential.helper = "oauth";
         # };
-        userName = "Shahvir Buhariwalla";
-        userEmail = "shahvirb@gmail.com";
+        userName = userSettings.gitUserName;
+        userEmail = userSettings.gitUserEmail;
       };
 
       programs.home-manager.enable = true;
