@@ -1,4 +1,5 @@
 # Ignore these files which are expected to be symlinks into files in the hosts/ directory
+flake.lock
 systemSettings.nix
 
 # secrets
