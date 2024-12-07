@@ -38,22 +38,15 @@
       #                      editor);
       };
 
-      # create patched nixpkgs
-      nixpkgs-patched =
-        (import inputs.nixpkgs-unstable { system = systemSettings.system; }).applyPatches {
-          name = "nixpkgs-patched";
-          src = inputs.nixpkgs-unstable;
-          patches = [ ./patches/emacs-no-version-check.patch ];
-        };
 
       # configure pkgs
       # use nixpkgs if running a server (lxc profile)
-      # otherwise use patched nixos-unstable nixpkgs
+      # otherwise use nixos-unstable nixpkgs
       pkgs = (if (systemSettings.profile == "lxc")
               then
                 pkgs-stable
               else
-                (import nixpkgs-patched {
+                (import inputs.nixpkgs-unstable {
                   system = systemSettings.system;
                   config = {
                     allowUnfree = true;
