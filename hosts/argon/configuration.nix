@@ -1,4 +1,4 @@
-{ pkgs, modulesPath, systemSettings, userSettings, ... }:
+{ lib, pkgs, modulesPath, systemSettings, userSettings, ... }:
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -11,6 +11,7 @@
     ../../modules/common.nix
     ../../modules/1password.nix
     ../../modules/sshkeys.nix
+    ( import ../../modules/docker.nix {storageDriver = null; inherit pkgs userSettings lib;} )
   ];
 
   proxmoxLXC = {
@@ -21,7 +22,7 @@
 
   users.users.${userSettings.username} = {
     description  = userSettings.name;
-    extraGroups  = [ "wheel" "networkmanager" "docker"];
+    extraGroups  = [ "wheel" "networkmanager"];
     isNormalUser  = true;
     password = "root";
     uid = 1000;
