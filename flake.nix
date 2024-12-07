@@ -139,7 +139,6 @@
           system = systemSettings.system;
           modules = [
             (./. + "/hosts/${systemSettings.hostname}/configuration.nix")
-            # (./. + "/hosts" + ("/" + systemSettings.hostname) + "/configuration.nix")
           ];
           specialArgs = {
             # pass config variables from above
