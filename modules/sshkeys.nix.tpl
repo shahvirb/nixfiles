@@ -1,4 +1,4 @@
-{ config, pkgs, userSettings, ... }:
+{userSettings, ... }:
 
 {
   services.openssh.enable = true;

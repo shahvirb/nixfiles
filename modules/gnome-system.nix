@@ -1,4 +1,4 @@
-{ config, pkgs, userSettings, ... }:
+{pkgs, userSettings, ... }:
 
 {
   services.xserver = {

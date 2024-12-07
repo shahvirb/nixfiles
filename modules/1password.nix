@@ -1,6 +1,5 @@
 # https://nixos.wiki/wiki/1Password
-{ config, pkgs, userSettings, ... }:
-
+{userSettings, ... }:
 {
   programs._1password.enable = true;
   programs._1password-gui = {

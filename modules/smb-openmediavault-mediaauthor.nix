@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{pkgs, ... }:
 {
   environment.systemPackages = [ pkgs.samba4Full ];
   fileSystems."/mnt/Media" = {
