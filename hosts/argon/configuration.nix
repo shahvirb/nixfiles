@@ -20,23 +20,7 @@
     manageHostName = false;
   };
 
-  home-manager = {
-    users.${userSettings.username} = {
-      imports = [
-        ../../home-manager/shahvirb.nix
-        ./home.nix
-      ];
-    };
-
-    extraSpecialArgs = {
-      # pass config variables from above
-      # inherit pkgs-stable;
-      inherit systemSettings;
-      inherit userSettings;
-      # inherit inputs;
-    };
-  };
-
+  # TODO this needs to move to docker.nix
   virtualisation.docker.enable = true;
 
   system.stateVersion = "23.11";

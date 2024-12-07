@@ -10,8 +10,6 @@ with lib;
         wget
       ];
 
-      home.stateVersion = "23.11";
-
       programs.bash = {
         enable = true;
         initExtra = ''

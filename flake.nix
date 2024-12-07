@@ -116,23 +116,21 @@
         forAllSystems (system: import inputs.nixpkgs { inherit system; });
 
     in {
-      # homeConfigurations = {
-      #   user = home-manager.lib.homeManagerConfiguration {
-      #     inherit pkgs;
-      #     modules = [
-      #       (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix") # load home.nix from selected PROFILE
-      #     ];
-      #     extraSpecialArgs = {
-      #       # pass config variables from above
-      #       inherit pkgs-stable;
-      #       inherit pkgs-emacs;
-      #       inherit pkgs-kdenlive;
-      #       inherit systemSettings;
-      #       inherit userSettings;
-      #       inherit inputs;
-      #     };
-      #   };
-      # };
+      homeConfigurations = {
+        user = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            (./. + "/hosts/${systemSettings.hostname}/home.nix")
+          ];
+          extraSpecialArgs = {
+            # pass config variables from above
+            inherit pkgs-stable;
+            inherit systemSettings;
+            inherit userSettings;
+            inherit inputs;
+          };
+        };
+      };
       
       nixosConfigurations = {
         "${systemSettings.hostname}" = lib.nixosSystem {
