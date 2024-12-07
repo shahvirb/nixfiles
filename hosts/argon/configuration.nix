@@ -20,8 +20,5 @@
     manageHostName = false;
   };
 
-  # TODO this needs to move to docker.nix
-  virtualisation.docker.enable = true;
-
   system.stateVersion = "23.11";
 }
