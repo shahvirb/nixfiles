@@ -1,20 +1,10 @@
-{ config, pkgs, ... }:
-let
-  pkgsUnstable = import <nixpkgs-unstable> {
-    config = {
-      allowUnfree = true;  # Ensure unfree packages are allowed in this import
-    };
-  };
-
-  unstablePackages = with pkgsUnstable; [
-    zoom-us
-  ];
-in
+{pkgs, ... }:
 {
   home.packages = with pkgs; [
     gh
     git-filter-repo
     popsicle # For making bootable USBs
     sqlitebrowser
+    zoom-us
   ] ++ unstablePackages;
 }

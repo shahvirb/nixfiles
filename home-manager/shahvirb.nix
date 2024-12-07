@@ -1,27 +1,5 @@
 { config, lib, pkgs, systemSettings, userSettings, ... }:
 with lib;
-let
-  pkgsUnstable = import <nixpkgs-unstable> {
-    config = {
-      allowUnfree = true;  # Ensure unfree packages are allowed in this import
-      permittedInsecurePackages = [
-        "openssl-1.1.1w"
-      ];
-    };
-  };
-
-  unstablePackagesGraphical = with pkgsUnstable; [
-    brave
-    git-credential-oauth
-    google-chrome
-    joplin-desktop
-    legcord
-    protonvpn-gui
-    spotify
-    sublime4
-    vscode
-  ];
-in
 {
   config = mkMerge [
     {
@@ -64,7 +42,16 @@ in
     }
     (mkIf (systemSettings.profile == "graphical") {
       home.packages = with pkgs; [
-      ] ++ unstablePackagesGraphical;
+        brave
+        git-credential-oauth
+        google-chrome
+        joplin-desktop
+        legcord
+        protonvpn-gui
+        spotify
+        sublime4
+        vscode
+      ];
 
       home.sessionVariables = {
         TERMINAL = "alacritty";
