@@ -19,9 +19,9 @@ with lib;
           }
         '';
         shellAliases = {
-          nrbb = "sudo nixos-rebuild boot";
-          nrbs = "sudo nixos-rebuild switch";
-          nrbsu = "sudo nix-channel --update && sudo nixos-rebuild switch --upgrade";
+          nrbb = "sudo nixos-rebuild boot --flake path:.";
+          nrbs = "sudo nixos-rebuild switch --flake path:.";
+          nrbsu = "sudo nix flake update && sudo nixos-rebuild boot --flake path:.";
         };
       };
 
