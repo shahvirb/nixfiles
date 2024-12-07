@@ -3,17 +3,7 @@
 
   outputs = inputs@{ self, ... }:
     let
-      # ---- SYSTEM SETTINGS ---- #
-      systemSettings = {
-        system = "x86_64-linux"; # system arch
-        hostname = "argon"; # hostname
-        profile = "lxc";
-        timezone = "America/Chicago"; # select timezone
-        locale = "en_US.UTF-8"; # select locale
-        # bootMode = "uefi"; # uefi or bios
-        # bootMountPath = "/boot"; # mount path for efi boot partition; only used for uefi boot mode
-        # grubDevice = ""; # device identifier for grub; only used for legacy (bios) boot mode
-      };
+      systemSettings = import ./systemSettings.nix;
 
       # ----- USER SETTINGS ----- #
       userSettings = rec {
