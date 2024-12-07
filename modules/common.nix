@@ -1,6 +1,5 @@
 { config, lib, pkgs, systemSettings, userSettings, ... }:
 with lib;
-
 {
   config = mkMerge [
     {
@@ -40,10 +39,6 @@ with lib;
     }
     (mkIf (systemSettings.profile == "graphical") {
       networking.networkmanager.enable = true;
-
-      # nix.extraOptions = ''
-      #   experimental-features = nix-command
-      # '';
 
       # Disable if printing is not needed
       services.printing.enable = true;
