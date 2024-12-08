@@ -16,6 +16,8 @@ with lib;
         LC_TIME = systemSettings.locale;
       };
 
+      networking.hostName = systemSettings.hostname;
+
       nix = {
         extraOptions = ''
           experimental-features = nix-command flakes
