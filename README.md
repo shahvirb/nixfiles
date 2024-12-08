@@ -5,8 +5,7 @@ From a fresh or existing NixOS install:
 3. Clone this repo [into /etc/nixos](https://www.devgem.io/posts/how-to-clone-a-git-repository-into-an-existing-folder).
 4. Add a ```hosts/<machine-name>``` directory if it doesn't exist.
 5. ```ln -s hosts/<machine-name/systemSettings.nix /etc/nixos/systemSettings.nix```
-5. ```ln -s hosts/<machine-name/flake.lock /etc/nixos/flake.lock```
-7. Try it. Run ```sudo nixos-rebuild switch --flake path:.```
+6. Try it. Run ```sudo nixos-rebuild switch --flake path:.```
 
 # Command Cheat Sheet
 Rebuild and switch now: ```sudo nixos-rebuild switch```
