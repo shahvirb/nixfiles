@@ -8,21 +8,13 @@ From a fresh or existing NixOS install:
 6. Try it. Run ```sudo nixos-rebuild switch --flake path:.```
 
 # Command Cheat Sheet
-Rebuild and switch now: ```sudo nixos-rebuild switch```
-
-Upgrade packages and switch: ```sudo nixos-rebuild switch --upgrade```
-
-See the value of an option and how it's being set: ```nixos-option networking.hostName```
-
-[Using the Nix repl to see options and values](https://jorel.dev/NixOS4Noobs/options.html#method-3-using-the-nix-repl)
-
-## Flake Based
-
 
 | Description | Command |
 |-------------|---------|
 | Rebuild and switch | ```sudo nixos-rebuild switch --flake path:.```|
 | Flake update | ```sudo nix flake update``` |
+| See the value of an option and how it's being set | ```nixos-option networking.hostName``` |
+| [Using the Nix repl to see options and values](https://jorel.dev/NixOS4Noobs/options.html#method-3-using-the-nix-repl) | ```nix repl '<nixpkgs/nixos>'``` |
 
 ## Cleaning up old generations
 Delete generations older than 2 days: ```sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 2d```. Can also be run with ```--dry-run```
