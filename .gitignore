@@ -1,5 +1,5 @@
 # Ignore these files which are expected to be symlinks into files in the hosts/ directory
-systemSettings.nix
+/systemSettings.nix
 
 # secrets
 omv-mediaauthor.secrets
