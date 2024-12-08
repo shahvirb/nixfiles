@@ -14,7 +14,6 @@
         gitUserEmail = "shahvirb@gmail.com";
       };
 
-
       # configure pkgs
       # use nixpkgs if running a server (lxc profile)
       # otherwise use nixos-unstable nixpkgs
