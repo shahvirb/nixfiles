@@ -1,15 +1,15 @@
-{ lib, pkgs, modulesPath, systemSettings, userSettings, ... }:
+{ lib, pkgs, modulesPath, systemSettings, userSettings, inputs, ... }:
 {
   # Do this first because the nixos-hardware.git nvidia import below needs it
   nixpkgs.config.allowUnfree = true;
 
   imports = [
-    "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/common/cpu/amd"
-    "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/common/cpu/amd/pstate.nix"
-    "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/common/gpu/nvidia"
-    "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/common/pc/ssd"
+    "${inputs.nixos-hardware}/common/cpu/amd"
+    "${inputs.nixos-hardware}/common/cpu/amd/pstate.nix"
+    "${inputs.nixos-hardware}/common/gpu/nvidia"
+    "${inputs.nixos-hardware}/common/pc/ssd"
+    "${inputs.repo-9999years-nix-config}/modules/usb-wakeup-disable.nix"
     ./hardware-configuration.nix
-    "${builtins.fetchGit { url = "https://github.com/9999years/nix-config.git"; }}/modules/usb-wakeup-disable.nix"
     ../../modules/1password.nix
     ../../modules/common.nix
     ../../modules/gnome-system.nix

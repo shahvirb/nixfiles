@@ -97,5 +97,12 @@
 
     home-manager-stable.url = "github:nix-community/home-manager/release-24.05";
     home-manager-stable.inputs.nixpkgs.follows = "nixpkgs-stable";
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+
+    repo-9999years-nix-config = {
+      url = "github:9999years/nix-config";
+      flake = false; # Treat it as a raw Git repository, not a flake
+    };
   };
 }
