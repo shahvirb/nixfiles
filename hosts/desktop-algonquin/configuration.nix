@@ -4,10 +4,13 @@
   nixpkgs.config.allowUnfree = true;
 
   imports = [
-    "${inputs.nixos-hardware}/common/cpu/amd"
-    "${inputs.nixos-hardware}/common/cpu/amd/pstate.nix"
-    "${inputs.nixos-hardware}/common/gpu/nvidia"
-    "${inputs.nixos-hardware}/common/pc/ssd"
+    # "${inputs.nixos-hardware}/common/cpu/amd"
+    # "${inputs.nixos-hardware}/common/cpu/amd/pstate.nix"
+    inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+    # "${inputs.nixos-hardware}/common/gpu/nvidia"
+    inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
+    # "${inputs.nixos-hardware}/common/pc/ssd"
+    inputs.nixos-hardware.nixosModules.common-pc-ssd
     "${inputs.repo-9999years-nix-config}/modules/usb-wakeup-disable.nix"
     ./hardware-configuration.nix
     ../../modules/1password.nix
@@ -36,6 +39,17 @@
       # Disable os prober on this machine because it picks up the wrong windows install
       # useOSProber = true;
     };
+  };
+
+  hardware.nvidia = {
+    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+    # Enable this if you have graphical corruption issues or application crashes after waking
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
+    # of just the bare essentials.
+    powerManagement.enable = true;
+
+    open = false;
+    nvidiaSettings = true;
   };
 
   # Don't let USB devices wake the computer from sleep.
