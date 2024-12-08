@@ -9,7 +9,7 @@
 
   services.samba = {
     enable = true;
-    securityType = "user";
     openFirewall = true;
+    settings.global.security = "user";
   };
 }
