@@ -4,12 +4,8 @@
   nixpkgs.config.allowUnfree = true;
 
   imports = [
-    # "${inputs.nixos-hardware}/common/cpu/amd"
-    # "${inputs.nixos-hardware}/common/cpu/amd/pstate.nix"
     inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
-    # "${inputs.nixos-hardware}/common/gpu/nvidia"
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
-    # "${inputs.nixos-hardware}/common/pc/ssd"
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     "${inputs.repo-9999years-nix-config}/modules/usb-wakeup-disable.nix"
     ./hardware-configuration.nix
