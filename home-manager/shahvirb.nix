@@ -7,7 +7,6 @@ with lib;
         dig
         gh
         micro
-        tilix
         wget
       ];
 
@@ -49,6 +48,7 @@ with lib;
         protonvpn-gui
         spotify
         sublime4
+        tilix
         vscode
       ];
 
