@@ -7,6 +7,7 @@ with lib;
         dig
         gh
         micro
+        tilix
         wget
       ];
 
