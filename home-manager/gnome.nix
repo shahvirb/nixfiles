@@ -72,7 +72,7 @@ in
     };
 
     home.packages = with pkgs; [
-      gnome.gnome-tweaks
+      gnome-tweaks
       gnomeExtensions.gtile
       gnomeExtensions.vitals
     ] ++ (if cfg.enableDashToPanel then [gnomeExtensions.dash-to-panel] else []);
