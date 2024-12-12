@@ -12,6 +12,7 @@
         email = "shahvirb@gmail.com";
         gitUserName = "shahvirb";
         gitUserEmail = "shahvirb@gmail.com";
+        homeDirectory = "/home/shahvirb";
       };
 
       # configure pkgs

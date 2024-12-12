@@ -3,6 +3,9 @@ with lib;
 {
   config = mkMerge [
     {
+      home.username = userSettings.username;
+      home.homeDirectory = userSettings.homeDirectory;
+      
       home.packages = with pkgs; [
         dig
         gh
