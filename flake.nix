@@ -55,27 +55,26 @@
              else
                inputs.home-manager-unstable);
     in {
-      homeConfigurations = {
-        user = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            (./. + "/hosts/${systemSettings.hostname}/home.nix")
-          ];
-          extraSpecialArgs = {
-            # pass config variables from above
-            inherit pkgs-stable;
-            inherit systemSettings;
-            inherit userSettings;
-            inherit inputs;
-          };
-        };
-      };
-      
       nixosConfigurations = {
         "${systemSettings.hostname}" = lib.nixosSystem {
           system = systemSettings.system;
           modules = [
             (./. + "/hosts/${systemSettings.hostname}/configuration.nix")
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${userSettings.username} = import (./. + "/hosts/${systemSettings.hostname}/home.nix");
+
+              home-manager.extraSpecialArgs = {
+                inherit pkgs-stable;
+                inherit systemSettings;
+                inherit userSettings;
+                inherit inputs;
+              };
+            }
+
           ];
           specialArgs = {
             # pass config variables from above
