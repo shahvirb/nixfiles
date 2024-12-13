@@ -61,6 +61,11 @@ with lib;
         alsa.support32Bit = true;
         pulse.enable = true;
       };
+
+      # This is for spotify
+      nixpkgs.config.permittedInsecurePackages = [
+        "openssl-1.1.1w"
+      ];
     })
     (mkIf (systemSettings.profile == "lxc") {
       # This is a container so we need to use userspace networking mode https://nixos.wiki/wiki/Tailscale

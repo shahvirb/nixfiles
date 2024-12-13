@@ -42,10 +42,6 @@ with lib;
       nixpkgs.config.allowUnfree = true;
     }
     (mkIf (systemSettings.profile == "graphical") {
-      nixpkgs.config.permittedInsecurePackages = [
-        "openssl-1.1.1w" # This is for spotify
-      ];
-
       home.packages = with pkgs; [
         brave
         git-credential-oauth
