@@ -1,7 +1,7 @@
 {pkgs, ... }:
 {
   imports = [
-    ../../home-manager/shahvirb.nix
+    ../../home-manager/common.nix
   ];
 
   home.packages = with pkgs; [

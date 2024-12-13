@@ -2,7 +2,7 @@
 {
   imports = [
     ../../home-manager/1password.nix
-    ../../home-manager/shahvirb.nix
+    ../../home-manager/common.nix
     ../../home-manager/firefox.nix
     ../../home-manager/gnome.nix
     ../../home-manager/python.nix
