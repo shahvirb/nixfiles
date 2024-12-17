@@ -38,7 +38,7 @@
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal" = {
         binding = "<Ctrl><Alt>t";
-        command = "alacritty";
+        command = "tilix";
         name = "Launch Terminal";
       };
 
