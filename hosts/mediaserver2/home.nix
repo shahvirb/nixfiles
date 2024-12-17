@@ -2,7 +2,7 @@
 {
   imports = [
     ../../home-manager/common.nix
-    ../../home-manager/vuetorrent.nix
+    # ../../home-manager/vuetorrent.nix
   ];
 
   home.packages = with pkgs; [
