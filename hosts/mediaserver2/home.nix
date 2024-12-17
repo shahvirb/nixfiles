@@ -1,7 +1,6 @@
 {pkgs, ... }:
 {
   imports = [
-    ../../home-manager/1password.nix
     ../../home-manager/common.nix
     ../../home-manager/vuetorrent.nix
   ];
