@@ -1,7 +1,8 @@
 {pkgs, ... }:
 {
   home.packages = with pkgs; [
-    talosctl
     kubectl
+    kubernetes-helm
+    talosctl
   ];
 }
