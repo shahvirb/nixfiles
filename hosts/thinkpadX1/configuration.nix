@@ -9,6 +9,7 @@
     ../../modules/1password.nix
     ../../modules/common.nix
     ../../modules/gnome-system.nix
+    ../../modules/gnome-rdp.nix
     ../../modules/smb-openmediavault-mediaauthor.nix
   ];
 
