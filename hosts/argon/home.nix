@@ -2,6 +2,7 @@
 {
   imports = [
     ../../home-manager/common.nix
+    ../../home-manager/talosctl.nix
   ];
 
   home.packages = with pkgs; [

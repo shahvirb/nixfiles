@@ -5,6 +5,7 @@
     ../../home-manager/gnome.nix
     ../../home-manager/python.nix
     ../../home-manager/common.nix
+    ../../home-manager/talosctl.nix
   ];
 
   home.packages = with pkgs; [
