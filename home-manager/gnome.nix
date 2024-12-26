@@ -53,6 +53,11 @@
         command = "code /etc/nixos";
         name = "Launch VSCode /etc/nixos";
       };
+
+      # For independent monitor display scaling as per https://gitlab.gnome.org/GNOME/gnome-control-center/-/issues/17
+      "org/gnome/mutter" = {
+        experimental-features = [ "scale-monitor-framebuffer" ];
+      };
     };
 
     gtk = {
