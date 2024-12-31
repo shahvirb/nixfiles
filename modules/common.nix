@@ -40,6 +40,7 @@ with lib;
 
       users.users.${userSettings.username} = {
         description  = userSettings.name;
+        group = "${userSettings.username}";
         extraGroups  = [ "wheel" "networkmanager"];
         isNormalUser  = true;
         password = "root";
