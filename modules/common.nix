@@ -45,6 +45,10 @@ with lib;
         password = "root";
         uid = 1000;
       };
+
+      users.groups.${userSettings.username} = {
+        gid = 1000;
+      };
     }
     (mkIf (systemSettings.profile == "graphical") {
       networking.networkmanager.enable = true;
