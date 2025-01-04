@@ -1,6 +1,6 @@
 {pkgs, ... }:
 {
-  environment.systemPackages = [ pkgs.samba4Full ];
+  # environment.systemPackages = [ pkgs.sambaFull ];
   fileSystems."/mnt/Media" = {
     device = "//openmediavault/Media";
     fsType = "cifs";
@@ -11,5 +11,9 @@
     enable = true;
     openFirewall = true;
     settings.global.security = "user";
+    package = pkgs.sambaFull.override {
+      # Workaround for https://github.com/NixOS/nixpkgs/issues/359723
+      enableCephFS = false;
+    };
   };
 }
