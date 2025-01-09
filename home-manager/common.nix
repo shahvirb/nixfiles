@@ -48,6 +48,7 @@ with lib;
         google-chrome
         joplin-desktop
         legcord
+        libreoffice-qt
         protonvpn-gui
         spotify
         sublime4
