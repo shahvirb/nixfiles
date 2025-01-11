@@ -16,12 +16,12 @@
     manageHostName = false;
   };
 
-  users.groups = {
-    mediaauthor = {
-      gid = 1000;
-    };
-  };
-  users.users.${userSettings.username}.extraGroups = [ "mediaauthor" ];
+  # users.groups = {
+  #   mediaauthor = {
+  #     gid = 1000;
+  #   };
+  # };
+  # users.users.${userSettings.username}.extraGroups = [ "mediaauthor" ];
 
   system.stateVersion = "23.11";
 }
