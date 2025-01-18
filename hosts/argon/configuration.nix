@@ -18,7 +18,7 @@
 
   # For the Unifi network docker container
   networking.firewall = {
-    allowedTCPPorts = [ 6789 8080 8443 8843 8880 ];
+    allowedTCPPorts = [ 6789 8087 8443 8843 8880 ];
     allowedUDPPorts = [ 1900 3478 5514 10001 ];
   };
 
