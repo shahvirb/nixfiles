@@ -16,11 +16,15 @@
     manageHostName = false;
   };
 
-  # For the Unifi network docker container
-  networking.firewall = {
-    allowedTCPPorts = [ 6789 8087 8443 8843 8880 ];
-    allowedUDPPorts = [ 1900 3478 5514 10001 ];
-  };
+  networking.firewall = lib.mkMerge [
+    { # unifi controller
+      allowedTCPPorts = [ 6789 8087 8443 8843 8880 ];
+      allowedUDPPorts = [ 1900 3478 5514 10001 ];
+    }
+    { # homepage
+      allowedTCPPorts = [ 8992 ];
+    }
+  ];
 
   system.stateVersion = "23.11";
 }
