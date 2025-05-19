@@ -12,6 +12,7 @@
     gh
     git-filter-repo
     popsicle # For making bootable USBs
+    steam
     roomeqwizard
   ];
 
