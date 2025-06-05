@@ -35,6 +35,11 @@ with lib;
       # This is needed for VSCode remote support. Read: https://nixos.wiki/wiki/Visual_Studio_Code
       programs.nix-ld.enable = true;
 
+  
+      services.journald.extraConfig = ''
+        SystemMaxUse=500M
+      '';
+
       services.openssh.enable = mkDefault true;
       services.tailscale.enable = mkDefault true;
 
