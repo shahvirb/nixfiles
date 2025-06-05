@@ -23,5 +23,11 @@
   # };
   # users.users.${userSettings.username}.extraGroups = [ "mediaauthor" ];
 
+  # For the Plex container
+  networking.firewall = {
+    allowedTCPPorts = [ 6789 8087 8443 8843 8880 ];
+    allowedUDPPorts = [ 1900 3478 5514 10001 ];
+  };
+
   system.stateVersion = "23.11";
 }
