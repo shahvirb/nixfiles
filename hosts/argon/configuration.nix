@@ -27,6 +27,9 @@
       allowedTCPPorts = [ 6789 8087 8443 8843 8880 ];
       allowedUDPPorts = [ 1900 3478 5514 10001 ];
     }
+    { # netalertx
+      allowedTCPPorts = [ 20211 ];
+    }
   ];
 
   system.stateVersion = "23.11";
