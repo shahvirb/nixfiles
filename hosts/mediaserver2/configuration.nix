@@ -25,16 +25,18 @@
 
   networking.firewall = {
     allowedTCPPorts = [ 
+      # Dispatcharr
+      9191
+      # Frigate
+      8554 8555 8971
       # Plex
       6789 8087 8443 8843 8880 
-      # Frigate
-      8971 8554 8555 
     ];
     allowedUDPPorts = [ 
-      # Plex
-      1900 3478 5514 10001 
       # Frigate
       8555 
+      # Plex
+      1900 3478 5514 10001 
     ];
   };
 
