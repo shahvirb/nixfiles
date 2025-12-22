@@ -4,3 +4,5 @@
 # secrets
 omv-mediaauthor.secrets
 modules/sshkeys.nix
+hosts/argon/periphery/periphery.config.toml
+hosts/argon/home.nix

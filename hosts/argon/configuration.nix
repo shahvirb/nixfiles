@@ -16,6 +16,10 @@
     manageHostName = false;
   };
 
+  # environment.systemPackages = [
+  #   pkgs.komodo
+  # ];
+
   networking.firewall = lib.mkMerge [
     { # homepage
       allowedTCPPorts = [ 8992 ];
@@ -30,7 +34,13 @@
     { # netalertx
       allowedTCPPorts = [ 20211 ];
     }
+    { # tandoor
+      allowedTCPPorts = [ 8120 ];
+    }
   ];
+
+  # system.autoUpgrade.enable  = true;
+  # system.autoUpgrade.allowReboot  = true;
 
   system.stateVersion = "23.11";
 }
