@@ -80,3 +80,19 @@ EOF
     fi
   fi
 ```
+
+# Komodo Periphery
+
+### Starting Periphery
+```
+periphery --config-path /etc/nixos/hosts/argon/periphery/
+```
+I don't know whether sudo is required here
+
+### Secrets Management
+Secrets management here is a bit clunky because when we start periphery with the below command there cannot be any .tpl files inside the periphery dir.
+
+For now ensure you copy and paste the generated ```periphery.config.toml``` from the ```periphery-template``` dir into the  ```periphery``` dir after running ```op-unpack.sh```
+
+
+

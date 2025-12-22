@@ -16,13 +16,15 @@
     manageHostName = false;
   };
 
-  # environment.systemPackages = [
-  #   pkgs.komodo
-  # ];
-
   networking.firewall = lib.mkMerge [
     { # homepage
       allowedTCPPorts = [ 8992 ];
+    }
+    { # komodo periphery
+      allowedTCPPorts = [ 8120 ];
+    }
+    { # netalertx
+      allowedTCPPorts = [ 20211 ];
     }
     { # tandoor
       allowedTCPPorts = [ 8014 ];
@@ -31,16 +33,7 @@
       allowedTCPPorts = [ 6789 8087 8443 8843 8880 ];
       allowedUDPPorts = [ 1900 3478 5514 10001 ];
     }
-    { # netalertx
-      allowedTCPPorts = [ 20211 ];
-    }
-    { # tandoor
-      allowedTCPPorts = [ 8120 ];
-    }
   ];
-
-  # system.autoUpgrade.enable  = true;
-  # system.autoUpgrade.allowReboot  = true;
 
   system.stateVersion = "23.11";
 }
