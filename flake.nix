@@ -94,7 +94,7 @@
     home-manager-unstable.url = "github:nix-community/home-manager/master";
     home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    home-manager-stable.url = "github:nix-community/home-manager/release-25.05";
+    home-manager-stable.url = "github:nix-community/home-manager/release-25.11";
     home-manager-stable.inputs.nixpkgs.follows = "nixpkgs-stable";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
