@@ -31,6 +31,8 @@
       8554 8555 8971
       # Plex
       6789 8087 8443 8843 8880 
+      # qbittorrent
+      8099
     ];
     allowedUDPPorts = [ 
       # Frigate
