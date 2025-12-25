@@ -17,7 +17,7 @@
       WantedBy = [ "default.target" ];
     };
     Service = {
-      ExecStart = "/bin/sh -lc \"${pkgs.komodo}/bin/periphery --config-path /etc/nixos/hosts/argon/periphery/\"";
+      ExecStart = "/bin/sh -lc \"${pkgs.komodo}/bin/periphery --config-path /etc/nixos/hosts/$HOSTNAME/periphery/\"";
       Environment = [
         "HOME=/home/shahvirb"
       ];
