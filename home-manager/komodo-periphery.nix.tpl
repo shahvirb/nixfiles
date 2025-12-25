@@ -6,7 +6,7 @@
   ];
 
   home.sessionVariables = {
-    OP_SERVICE_ACCOUNT_TOKEN = "op://Dev - Home Lab/argon 1Password CLI service account/password";
+    OP_SERVICE_ACCOUNT_TOKEN = "op://Dev - Home Lab/nixos 1Password CLI service account/password";
   };
   
   systemd.user.services.komodo-periphery = {
