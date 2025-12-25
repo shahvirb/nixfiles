@@ -1,17 +1,8 @@
 {pkgs, ... }:
 {
-  imports = [
-    ../../home-manager/common.nix
-    ../../home-manager/talosctl.nix
-  ];
-
   home.packages = with pkgs; [
     komodo
     openssl
-  ];
-
-  home.sessionPath = [
-    "/home/shahvirb/gitsource/utils"
   ];
 
   home.sessionVariables = {
@@ -26,11 +17,10 @@
       WantedBy = [ "default.target" ];
     };
     Service = {
-      ExecStart = "${pkgs.writeShellScript "komodo-periphery" ''
-        ${pkgs.komodo}/bin/periphery --config-path /etc/nixos/hosts/argon/periphery/
-      ''}";
+      ExecStart = "/bin/sh -lc \"${pkgs.komodo}/bin/periphery --config-path /etc/nixos/hosts/argon/periphery/\"";
+      Environment = [
+        "HOME=/home/shahvirb"
+      ];
     };
   };
-
-  home.stateVersion = "23.11";
 }
