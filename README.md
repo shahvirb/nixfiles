@@ -80,3 +80,6 @@ EOF
     fi
   fi
 ```
+
+# Komodo Periphery
+After running ```op-unpack.sh``` move generated ```periphery-template/periphery.config.toml``` into ```periphery/``` dir 
