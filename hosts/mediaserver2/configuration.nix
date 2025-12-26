@@ -27,6 +27,9 @@
     { # Dispatcharr
       allowedTCPPorts = [ 9191 ];
     }
+    { # komodo-periphery
+      allowedTCPPorts = [ 8120 ];
+    }
     { # Frigate
       allowedTCPPorts = [ 8554 8555 8971 ];
       allowedUDPPorts = [ 8555 ];
