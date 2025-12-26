@@ -23,24 +23,22 @@
   # };
   # users.users.${userSettings.username}.extraGroups = [ "mediaauthor" ];
 
-  networking.firewall = {
-    allowedTCPPorts = [ 
-      # Dispatcharr
-      9191
-      # Frigate
-      8554 8555 8971
-      # Plex
-      6789 8087 8443 8843 8880 
-      # qbittorrent
-      8099
-    ];
-    allowedUDPPorts = [ 
-      # Frigate
-      8555 
-      # Plex
-      1900 3478 5514 10001 
-    ];
-  };
+  networking.firewall = lib.mkMerge [
+    { # Dispatcharr
+      allowedTCPPorts = [ 9191 ];
+    }
+    { # Frigate
+      allowedTCPPorts = [ 8554 8555 8971 ];
+      allowedUDPPorts = [ 8555 ];
+    }
+    { # Plex
+      allowedTCPPorts = [ 6789 8087 8443 8843 8880 ];
+      allowedUDPPorts = [ 1900 3478 5514 10001 ];
+    }
+    { # qbittorrent
+      allowedTCPPorts = [ 8099 ];
+    }
+  ];
 
   system.stateVersion = "23.11";
 }
