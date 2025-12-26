@@ -2,6 +2,7 @@
 {
   imports = [
     ../../home-manager/common.nix
+    ../../home-manager/komodo-periphery.nix
   ];
 
   home.packages = with pkgs; [
