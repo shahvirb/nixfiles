@@ -2,7 +2,8 @@
 /systemSettings.nix
 
 # secrets
-omv-mediaauthor.secrets
-modules/sshkeys.nix
-hosts/argon/periphery/periphery.config.toml
 home-manager/komodo-periphery.nix
+hosts/argon/periphery/periphery.config.toml
+hosts/mediaserver2/periphery/periphery.config.toml
+modules/sshkeys.nix
+omv-mediaauthor.secrets
