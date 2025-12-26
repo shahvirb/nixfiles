@@ -36,7 +36,7 @@ bind_ip = "[::]"
 ## Each specific directory (like stack_dir) can be overridden below.
 ## Env: PERIPHERY_ROOT_DIRECTORY
 ## Default: /etc/komodo
-root_directory = "/etc/komodo"
+root_directory = "/home/shahvirb/komodo"
 
 ## Optional. Override the directory periphery will use to manage repos.
 ## The periphery user must have write access to this directory.
