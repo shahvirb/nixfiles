@@ -6,8 +6,10 @@
   ];
 
   home.packages = with pkgs; [
+    gemini-cli
   ];
 
+  
   home.sessionPath = [
     "/home/shahvirb/gitsource/mediaserver2/utils"
   ];
