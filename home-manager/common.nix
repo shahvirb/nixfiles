@@ -40,8 +40,6 @@ with lib;
       };
 
       programs.home-manager.enable = true;
-
-      nixpkgs.config.allowUnfree = true;
     }
     (mkIf (systemSettings.profile == "graphical") {
       home.packages = with pkgs; [
