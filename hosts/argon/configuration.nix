@@ -17,6 +17,10 @@
   };
 
   networking.firewall = lib.mkMerge [
+    { # caddy
+      allowedTCPPorts = [ 80 443 ];
+      allowedUDPPorts = [ 443 ];
+    }
     { # homepage
       allowedTCPPorts = [ 8992 ];
     }
