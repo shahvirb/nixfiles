@@ -33,8 +33,10 @@ with lib;
         # extraConfig = {
         #   credential.helper = "oauth";
         # };
-        userName = userSettings.gitUserName;
-        userEmail = userSettings.gitUserEmail;
+        settings = {
+          user.name = userSettings.gitUserName;
+          user.email = userSettings.gitUserEmail;
+        };
       };
 
       programs.home-manager.enable = true;
@@ -56,7 +58,7 @@ with lib;
         vscode
       ];
 
-      programs.git.extraConfig = {
+      programs.git.settings = {
         credential.helper = "oauth";
       };
     })
