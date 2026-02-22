@@ -1,4 +1,13 @@
-{pkgs, ... }:
+{ pkgs, inputs, ... }:
+let
+  pkgs-unstable = import inputs.nixpkgs-unstable {
+    system = pkgs.system;
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = (_: true);
+    };
+  };
+in
 {
   imports = [
     ../../home-manager/common.nix
@@ -7,7 +16,7 @@
   ];
 
   home.packages = with pkgs; [
-    gemini-cli
+    pkgs-unstable.gemini-cli
   ];
 
   home.sessionPath = [
