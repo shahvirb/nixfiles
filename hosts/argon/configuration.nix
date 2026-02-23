@@ -37,6 +37,9 @@
     { # netalertx
       allowedTCPPorts = [ 20211 ];
     }
+    { # openwebui + litellm
+      allowedTCPPorts = [ 3001 4000 ];
+    }
   ];
 
   system.stateVersion = "23.11";
