@@ -41,6 +41,9 @@
     { # qbittorrent
       allowedTCPPorts = [ 8099 ];
     }
+    { # CodeNomad
+      allowedTCPPorts = [ 9898 ];
+    }
   ];
 
   system.stateVersion = "23.11";

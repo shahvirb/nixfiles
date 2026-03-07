@@ -12,6 +12,7 @@ in
   home.packages = [
     pkgs-unstable.gemini-cli
     pkgs-unstable.opencode
+    pkgs.nodejs
 
   ];
 }
