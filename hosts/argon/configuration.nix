@@ -40,6 +40,9 @@
     { # openwebui + litellm
       allowedTCPPorts = [ 3001 4000 ];
     }
+    { # codenomad
+      allowedTCPPorts = [ 9898 ];
+    }
   ];
 
   system.stateVersion = "23.11";
