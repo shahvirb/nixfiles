@@ -2,7 +2,7 @@
 {
   imports = [
     ../../home-manager/common.nix
-    ../../home-manager/komodo-periphery.nix
+    # ../../home-manager/komodo-periphery.nix
     ../../home-manager/talosctl.nix
     ../../home-manager/ai-tools.nix
   ];
