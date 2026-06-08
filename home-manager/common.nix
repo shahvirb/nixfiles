@@ -10,6 +10,7 @@ with lib;
         dig
         gh
         micro
+        uv
         wget
       ];
 
