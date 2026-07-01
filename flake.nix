@@ -1,11 +1,8 @@
 {
   description = "System setup flake";
 
-  outputs = inputs@{ self, ... }:
+  outputs = inputs@{ self, nixpkgs-stable, nixpkgs-unstable, home-manager-stable, home-manager-unstable, ... }:
     let
-      systemSettings = import ./systemSettings.nix;
-
-      # ----- USER SETTINGS ----- #
       userSettings = rec {
         username = "shahvirb"; # username on the system
         name = "Shahvir"; # name/identifier on the system
@@ -15,76 +12,72 @@
         homeDirectory = "/home/shahvirb";
       };
 
-      # configure pkgs
-      # use nixpkgs if running a server (lxc profile)
-      # otherwise use nixos-unstable nixpkgs
-      pkgs = (if (systemSettings.profile == "lxc")
-              then
-                pkgs-stable
-              else
-                (import inputs.nixpkgs-unstable {
-                  system = systemSettings.system;
-                  config = {
-                    allowUnfree = true;
-                    allowUnfreePredicate = (_: true);
-                  };
-                }));
-
-      pkgs-stable = import inputs.nixpkgs-stable {
-        system = systemSettings.system;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = (_: true);
-        };
+      source = builtins.path {
+        path = /etc/nixos;
+        name = "source";
+        filter = path: type:
+          let base = baseNameOf path;
+          in base != ".git";
       };
 
-      # configure lib
-      # use nixpkgs if running a server (lxc profile)
-      # otherwise use patched nixos-unstable nixpkgs
-      lib = (if (systemSettings.profile == "lxc")
-             then
-               inputs.nixpkgs-stable.lib
-             else
-               inputs.nixpkgs-unstable.lib);
+      mkHost = hostname:
+        let
+          hostSettings = import (source + "/hosts/${hostname}/systemSettings.nix");
 
-      # use home-manager-stable if running a server (lxc profile)
-      # otherwise use home-manager-unstable
-      home-manager = (if (systemSettings.profile == "lxc")
-             then
-               inputs.home-manager-stable
-             else
-               inputs.home-manager-unstable);
-    in {
-      nixosConfigurations = {
-        "${systemSettings.hostname}" = lib.nixosSystem {
-          system = systemSettings.system;
-          modules = [
-            (./. + "/hosts/${systemSettings.hostname}/configuration.nix")
+          isStable = hostSettings.profile == "lxc";
 
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${userSettings.username} = import (./. + "/hosts/${systemSettings.hostname}/home.nix");
-
-              home-manager.extraSpecialArgs = {
-                inherit pkgs-stable;
-                inherit systemSettings;
-                inherit userSettings;
-                inherit inputs;
-              };
-            }
-
-          ];
-          specialArgs = {
-            # pass config variables from above
-            inherit pkgs-stable;
-            inherit systemSettings;
-            inherit userSettings;
-            inherit inputs;
+          pkgs-stable = import nixpkgs-stable {
+            system = hostSettings.system;
+            config = {
+              allowUnfree = true;
+              allowUnfreePredicate = (_: true);
+            };
           };
-        };
-      };
+
+          pkgs = if isStable then pkgs-stable else
+            import nixpkgs-unstable {
+              system = hostSettings.system;
+              config = {
+                allowUnfree = true;
+                allowUnfreePredicate = (_: true);
+              };
+            };
+
+          lib = if isStable then nixpkgs-stable.lib else nixpkgs-unstable.lib;
+
+          hm = if isStable then home-manager-stable else home-manager-unstable;
+        in
+          lib.nixosSystem {
+            system = hostSettings.system;
+            modules = [
+              (source + "/hosts/${hostname}/configuration.nix")
+              hm.nixosModules.home-manager
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.${userSettings.username} = import (source + "/hosts/${hostname}/home.nix");
+                home-manager.extraSpecialArgs = {
+                  inherit pkgs-stable;
+                  systemSettings = hostSettings;
+                  inherit userSettings;
+                  inherit inputs;
+                };
+              }
+            ];
+            specialArgs = {
+              inherit pkgs-stable;
+              systemSettings = hostSettings;
+              inherit userSettings;
+              inherit inputs;
+            };
+          };
+
+      hostDirs = builtins.attrNames (builtins.readDir (source + "/hosts"));
+    in {
+      nixosConfigurations = builtins.listToAttrs (map (hostname: {
+        name = hostname;
+        value = mkHost hostname;
+      }) hostDirs);
     };
 
   inputs = {
