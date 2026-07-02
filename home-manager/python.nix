@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    pipx
+    (pipx.overridePythonAttrs (_: { doCheck = false; }))
     poetry
     python3
   ];

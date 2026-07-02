@@ -11,14 +11,11 @@ The key files for each host are:
 - `hosts/<hostname>/home.nix`: The home-manager configuration for your user on that host.
 - `hosts/<hostname>/systemSettings.nix`: Host-specific settings like hostname and system architecture.
 
-Before running any commands, make sure you have a symbolic link from the `systemSettings.nix` of the host you are targeting to the root of the repository:
-```bash
-ln -sfn hosts/<hostname>/systemSettings.nix ./systemSettings.nix
-```
+The flake builds all hosts in parallel. Select a host via the `#hostname` suffix. The `--impure` flag allows access to local-only files (secrets, etc.).
 
-Then you can apply the configuration with:
+Apply the configuration with:
 ```bash
-sudo nixos-rebuild switch --flake .
+sudo nixos-rebuild switch --flake /etc/nixos#$(hostname) --impure
 ```
 
 ## Common Tasks with opencode

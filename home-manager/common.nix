@@ -10,6 +10,7 @@ with lib;
         dig
         gh
         micro
+        uv
         wget
       ];
 
@@ -22,9 +23,10 @@ with lib;
           }
         '';
         shellAliases = {
-          nrbb = "sudo nixos-rebuild boot --flake path:/etc/nixos";
-          nrbs = "sudo nixos-rebuild switch --flake path:/etc/nixos";
-          nrbsu = "sudo nix flake update && sudo nixos-rebuild boot --flake path:/etc/nixos";
+          nrbb = "sudo nixos-rebuild boot --flake path:/etc/nixos#$(hostname) --impure";
+          nrbs = "sudo nixos-rebuild switch --flake path:/etc/nixos#$(hostname) --impure";
+          nrbsu = "sudo nix flake update && sudo nixos-rebuild boot --flake path:/etc/nixos#$(hostname) --impure";
+          nfu = "nix flake update";
         };
       };
 
