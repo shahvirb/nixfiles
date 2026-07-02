@@ -1,10 +1,11 @@
 { pkgs, inputs, ... }:
 {
   imports = [
-    ../../home-manager/common.nix
-    # ../../home-manager/komodo-periphery.nix
-    ../../home-manager/talosctl.nix
     ../../home-manager/ai-tools.nix
+    ../../home-manager/common.nix
+    ../../home-manager/talosctl.nix
+    # ../../home-manager/komodo-periphery.nix
+    ../../home-manager/python.nix
   ];
 
   home.sessionPath = [
