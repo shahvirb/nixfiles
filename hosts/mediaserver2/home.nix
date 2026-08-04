@@ -4,6 +4,7 @@
     ../../home-manager/common.nix
     # ../../home-manager/komodo-periphery.nix
     ../../home-manager/ai-tools.nix
+    ../../home-manager/vuetorrent.nix
     ../../home-manager/python.nix
   ];
 

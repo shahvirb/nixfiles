@@ -1,4 +1,4 @@
-{pkgs, ... }:
+{ pkgs, config, ... }:
 let
   vtOverlay = builtins.fetchGit "https://git.kempkens.io/daniel/nix-overlay.git";
   vuetorrent = import "${vtOverlay}/packages/vuetorrent.nix" {
