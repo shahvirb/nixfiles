@@ -7,3 +7,6 @@ hosts/argon/periphery/periphery.config.toml
 hosts/mediaserver2/periphery/periphery.config.toml
 modules/sshkeys.nix
 omv-mediaauthor.secrets
+
+# build artifacts
+/result
