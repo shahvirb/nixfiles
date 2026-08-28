@@ -13,7 +13,7 @@
 
   systemd.user.services.dispatcharr-fix-channels = {
     Unit = {
-      Description = "Dispatcharr fix channels - InfinityTV headless";
+      Description = "Dispatcharr fix channels - Cron Job";
     };
     Service = {
       Type = "oneshot";
@@ -21,15 +21,13 @@
       Environment = [
         "PATH=/etc/profiles/per-user/shahvirb/bin:/usr/local/bin:/usr/bin:/bin"
       ];
-      ExecStart = "/run/current-system/sw/bin/bash /home/shahvirb/gitsource/dispatcharr-fix-channels/cron_infinitytv_headless.sh";
-      StandardOutput = "append:/tmp/dispatcharr-fix-channels.log";
-      StandardError = "append:/tmp/dispatcharr-fix-channels.log";
+      ExecStart = "/run/current-system/sw/bin/bash -c '/run/current-system/sw/bin/bash /home/shahvirb/gitsource/dispatcharr-fix-channels/cron_infinitytv_headless.sh 2>&1 | tee /tmp/dispatcharr-fix-channels-$(date +\\%Y\\%m\\%d-\\%H\\%M\\%S).log'";
     };
   };
 
   systemd.user.timers.dispatcharr-fix-channels = {
     Unit = {
-      Description = "Run dispatcharr-fix-channels every Friday at 10:00 AM";
+      Description = "Run dispatcharr-fix-channels weekly";
     };
     Timer = {
       OnCalendar = "Fri *-*-* 10:00:00";
