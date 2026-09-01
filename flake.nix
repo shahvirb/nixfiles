@@ -12,13 +12,7 @@
         homeDirectory = "/home/shahvirb";
       };
 
-      source = builtins.path {
-        path = /etc/nixos;
-        name = "source";
-        filter = path: type:
-          let base = baseNameOf path;
-          in base != ".git";
-      };
+      source = self;
 
       mkHost = hostname:
         let
