@@ -46,5 +46,27 @@
     }
   ];
 
+  systemd.services.dispatcharr-fix-channels = {
+    description = "Dispatcharr fix channels - Cron Job";
+    path = [
+      "/etc/profiles/per-user/shahvirb"
+    ];
+    serviceConfig = {
+      Type = "oneshot";
+      User = "shahvirb";
+      WorkingDirectory = "/home/shahvirb/gitsource/dispatcharr-fix-channels";
+      ExecStart = "/home/shahvirb/gitsource/dispatcharr-fix-channels/cron_infinitytv_headless.sh";
+    };
+  };
+
+  systemd.timers.dispatcharr-fix-channels = {
+    description = "Run dispatcharr-fix-channels weekly";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "Fri *-*-* 10:00:00";
+      Persistent = true;
+    };
+  };
+
   system.stateVersion = "23.11";
 }
