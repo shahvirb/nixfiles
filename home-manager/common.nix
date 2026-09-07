@@ -16,6 +16,9 @@ with lib;
 
       programs.bash = {
         enable = true;
+        bashrcExtra = ''
+          [ -f /etc/nixos/home-manager/op-service-account.secrets ] && source /etc/nixos/home-manager/op-service-account.secrets
+        '';
         initExtra = ''
           nixclean() {
             sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than "$1"
