@@ -1,7 +1,9 @@
 # secrets
 home-manager/komodo-periphery.nix
 hosts/argon/periphery/periphery.config.toml
+hosts/argon/periphery-template/periphery.config.toml
 hosts/mediaserver2/periphery/periphery.config.toml
+hosts/mediaserver2/periphery-template/periphery.config.toml
 modules/sshkeys.nix
 omv-mediaauthor.secrets
 op-service-account.secrets
