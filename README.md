@@ -4,8 +4,7 @@ From a fresh or existing NixOS install:
 2. ```nix-shell -p git git-credential-oauth vscode``` 
 3. Clone this repo [into /etc/nixos](https://www.devgem.io/posts/how-to-clone-a-git-repository-into-an-existing-folder).
 4. Add a ```hosts/<machine-name>``` directory if it doesn't exist.
-5. ```ln -s hosts/<machine-name/systemSettings.nix /etc/nixos/systemSettings.nix```
-6. Try it. Run ```sudo nixos-rebuild switch --flake path:.```
+5. Try it. Run ```sudo nixos-rebuild switch --flake path:.#$(hostname) --impure```
 
 # Command Cheat Sheet
 
