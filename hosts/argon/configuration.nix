@@ -24,9 +24,6 @@
     { # homepage
       allowedTCPPorts = [ 8992 ];
     }
-    { # komodo periphery
-      allowedTCPPorts = [ 8120 ];
-    }
     { # tandoor
       allowedTCPPorts = [ 8014 ];
     }
