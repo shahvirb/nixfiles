@@ -3,11 +3,11 @@
 
 # secrets
 home-manager/komodo-periphery.nix
-home-manager/op-service-account.secrets
 hosts/argon/periphery/periphery.config.toml
 hosts/mediaserver2/periphery/periphery.config.toml
 modules/sshkeys.nix
 omv-mediaauthor.secrets
+op-service-account.secrets
 
 # build artifacts
 /result

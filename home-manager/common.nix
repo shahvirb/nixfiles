@@ -17,7 +17,7 @@ with lib;
       programs.bash = {
         enable = true;
         bashrcExtra = ''
-          [ -f /etc/nixos/home-manager/op-service-account.secrets ] && source /etc/nixos/home-manager/op-service-account.secrets
+          [ -f /etc/nixos/op-service-account.secrets ] && source /etc/nixos/op-service-account.secrets
         '';
         initExtra = ''
           nixclean() {
