@@ -1,10 +1,64 @@
 # Bootstrapping this repo
-From a fresh or existing NixOS install:
-1. ```sudo chown -R $USER /etc/nixos``` because I assume that this repo is cloned directly into /etc/nixos
-2. ```nix-shell -p git git-credential-oauth vscode``` 
-3. Clone this repo [into /etc/nixos](https://www.devgem.io/posts/how-to-clone-a-git-repository-into-an-existing-folder).
-4. Add a ```hosts/<machine-name>``` directory if it doesn't exist.
-5. Try it. Run ```sudo nixos-rebuild switch --flake path:.#$(hostname) --impure```
+
+New machines are bootstrapped from a complete, machine-specific bundle. Create the
+bundle on a trusted machine that has access to the 1Password vault, then transfer it
+securely to the new machine. The bundle contains the flake, the selected host
+configuration, and the generated files that are normally excluded from Git.
+
+## Create a machine bundle
+
+1. Create or update `hosts/<machine-name>/` with these files:
+   - `systemSettings.nix`
+   - `configuration.nix`
+   - `home.nix`
+
+   The directory name and `systemSettings.hostname` must match the machine name.
+2. From `/etc/nixos`, generate the ignored files from their 1Password templates:
+
+   ```bash
+   ./op-unpack.sh
+   ```
+
+   The script creates the secret-bearing files required by the configuration.
+
+3. Create an archive that includes the repository files and generated files, but
+   not the Git metadata:
+
+   ```bash
+   tar --exclude=.git -czf ../<machine-name>-nixos.tar.gz .
+   ```
+
+   The archive contains secrets. Protect it during transfer and delete it when it
+   is no longer needed.
+
+## Install a machine bundle
+
+From the fresh NixOS machine:
+
+1. Ensure networking is working and that the installed Nix supports flakes.
+2. Transfer the matching bundle to the machine.
+3. Extract it into `/etc/nixos`, replacing the installer-generated configuration:
+
+   ```bash
+   sudo tar -xzf <machine-name>-nixos.tar.gz -C /etc/nixos
+   ```
+
+4. Apply the bundled configuration:
+
+   ```bash
+   sudo nixos-rebuild switch --flake /etc/nixos#$(hostname) --impure
+   ```
+
+   If the machine hostname does not yet match the host directory, use the host
+   name explicitly instead of `$(hostname)`:
+
+   ```bash
+   sudo nixos-rebuild switch --flake /etc/nixos#<machine-name> --impure
+   ```
+
+The rebuild activates the selected host configuration and creates a NixOS
+generation. Keep the generated files on the machine if the configuration imports
+them; they are ignored by Git and are not recreated by `nixos-rebuild`.
 
 # Command Cheat Sheet
 
