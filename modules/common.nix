@@ -1,4 +1,4 @@
-{ config, lib, pkgs, systemSettings, userSettings, ... }:
+{ config, lib, options, pkgs, systemSettings, userSettings, ... }:
 with lib;
 {
   config = mkMerge [
@@ -36,10 +36,6 @@ with lib;
       programs.nix-ld.enable = true;
 
   
-      services.journald.extraConfig = ''
-        SystemMaxUse=500M
-      '';
-
       services.openssh.enable = mkDefault true;
       services.tailscale.enable = mkDefault true;
 
@@ -56,6 +52,15 @@ with lib;
         gid = 1000;
       };
     }
+    (if options.services.journald ? settings then {
+      services.journald.settings.Journal = {
+        SystemMaxUse = "500M";
+      };
+    } else {
+      services.journald.extraConfig = ''
+        SystemMaxUse=500M
+      '';
+    })
     (mkIf (systemSettings.profile == "graphical") {
       networking.networkmanager.enable = true;
 
