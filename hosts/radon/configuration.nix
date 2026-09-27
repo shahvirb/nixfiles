@@ -3,7 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/common.nix
-    ../../modules/sshkeys.nix
+    # ../../modules/sshkeys.nix
   ];
 
   networking.useDHCP = true;
