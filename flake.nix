@@ -18,7 +18,7 @@
         let
           hostSettings = import (source + "/hosts/${hostname}/systemSettings.nix");
 
-          isStable = hostSettings.profile == "lxc";
+          isStable = builtins.elem hostSettings.profile [ "lxc" "server" ];
 
           pkgs-stable = import nixpkgs-stable {
             system = hostSettings.system;

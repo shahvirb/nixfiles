@@ -19,6 +19,8 @@ with lib;
       networking.hostName = systemSettings.hostname;
 
       nix = {
+        settings.trusted-users = [ "root" userSettings.username ];
+
         extraOptions = ''
           experimental-features = nix-command flakes
         '';
@@ -82,6 +84,7 @@ with lib;
         "openssl-1.1.1w"
       ];
     })
+    # TODO: Revisit whether server profiles should use userspace networking too.
     (mkIf (systemSettings.profile == "lxc") {
       # This is a container so we need to use userspace networking mode https://nixos.wiki/wiki/Tailscale
       services.tailscale.interfaceName = "userspace-networking";
