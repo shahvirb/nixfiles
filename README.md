@@ -44,8 +44,8 @@ From the fresh NixOS machine:
    nixos-rebuild switch \
      --flake /path/to/nixos-config#radon \
      --build-host localhost \
-     --target-host shahvirb@192.168.1.85 \
-     --use-remote-sudo
+     --target-host shahvirb@192.168.1.87 \
+     --sudo
    ```
 
 3. Extract it into `/etc/nixos`, replacing the installer-generated configuration:
