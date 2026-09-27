@@ -37,6 +37,17 @@ From the fresh NixOS machine:
 
 1. Ensure networking is working and that the installed Nix supports flakes.
 2. Transfer the matching bundle to the machine.
+
+   Alternatively, use remote deployment:
+
+   ```bash
+   nixos-rebuild switch \
+     --flake /path/to/nixos-config#radon \
+     --build-host localhost \
+     --target-host shahvirb@192.168.1.85 \
+     --use-remote-sudo
+   ```
+
 3. Extract it into `/etc/nixos`, replacing the installer-generated configuration:
 
    ```bash
