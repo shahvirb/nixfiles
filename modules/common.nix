@@ -17,6 +17,7 @@ with lib;
       };
 
       networking.hostName = systemSettings.hostname;
+      users.motd = "Welcome to nixfiles - ${config.networking.hostName}";
 
       nix = {
         settings.trusted-users = [ "root" userSettings.username ];
