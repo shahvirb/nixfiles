@@ -18,7 +18,7 @@ nixos-rebuild switch \
   --impure
 ```
 
-The target address is `192.168.1.87`. Do not use the older `192.168.1.85` address.
+The target address is `192.168.1.87`.
 
 ## Audit Before Deployment
 
