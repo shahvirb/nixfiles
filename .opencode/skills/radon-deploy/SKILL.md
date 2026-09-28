@@ -14,29 +14,12 @@ nixos-rebuild switch \
   --build-host localhost \
   --target-host shahvirb@192.168.1.87 \
   --sudo \
+  --ask-sudo-password \
   --impure
 ```
 
 The target address is `192.168.1.87`. Do not use the older `192.168.1.85` address.
 
-## Bootstrap
+## Audit Before Deployment
 
-```bash
-ssh -tt -o IdentitiesOnly=yes \
-  -i /home/shahvirb/.ssh/homelab-primary \
-  shahvirb@192.168.1.87
-```
-
-```bash
-sudo systemctl edit --runtime nix-daemon.service
-```
-
-```ini
-[Service]
-Environment="NIX_CONFIG=trusted-users = root shahvirb"
-```
-
-```bash
-sudo systemctl daemon-reload
-sudo systemctl restart nix-daemon.service
-```
+The audit begins with a remote `dry-activate` against the target host. It compares the proposed system with the active generation without applying changes. The resulting differences are reviewed for unexpected activation or runtime impacts.
