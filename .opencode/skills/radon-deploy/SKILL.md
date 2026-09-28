@@ -1,6 +1,6 @@
 ---
 name: radon-deploy
-description: Use when deploying or rebuilding the NixOS radon host at 192.168.1.87.
+description: Use when deploying or rebuilding the NixOS radon host at 192.168.1.74.
 ---
 
 # Radon Deployment
@@ -12,13 +12,13 @@ NIX_SSHOPTS='-o IdentitiesOnly=yes -i /home/shahvirb/.ssh/homelab-primary' \
 nixos-rebuild switch \
   --flake /etc/nixos#radon \
   --build-host localhost \
-  --target-host shahvirb@192.168.1.87 \
+  --target-host shahvirb@192.168.1.74 \
   --sudo \
   --ask-sudo-password \
   --impure
 ```
 
-The target address is `192.168.1.87`.
+The target address is `192.168.1.74`.
 
 ## Audit Before Deployment
 
