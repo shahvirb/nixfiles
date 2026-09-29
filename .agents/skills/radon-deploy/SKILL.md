@@ -23,3 +23,6 @@ The target address is `192.168.1.74`.
 ## Audit Before Deployment
 
 The audit begins with a remote `dry-activate` against the target host. It compares the proposed system with the active generation without applying changes. The resulting differences are reviewed for unexpected activation or runtime impacts.
+
+## SSH Debugging
+`ssh -o IdentitiesOnly=yes -i ~/.ssh/homelab-primary shahvirb@192.168.1.74`
