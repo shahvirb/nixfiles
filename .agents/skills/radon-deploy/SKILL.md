@@ -26,3 +26,11 @@ The audit begins with a remote `dry-activate` against the target host. It compar
 
 ## SSH Debugging
 `ssh -o IdentitiesOnly=yes -i ~/.ssh/homelab-primary shahvirb@192.168.1.74`
+
+## First Time Bootstrapping
+1. Use remote deployment to initially set up the `radon` host.
+2. Continue with the following steps on the host machine.
+2. git pull shahvirb/nixfiles then do a local `nrbs`
+3. Do `op signin` to authenticate with your 1Password account.
+4. `op-unpack.sh` && `nrbs`
+5. Reboot
