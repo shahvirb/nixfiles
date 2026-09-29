@@ -10,7 +10,6 @@ with lib;
         dig
         gh
         micro
-        nh
         uv
         wget
       ];
@@ -26,12 +25,6 @@ with lib;
             sudo nix-collect-garbage --delete-older-than "$1"
           }
         '';
-        shellAliases = {
-          nrbb = "sudo nixos-rebuild boot --flake path:/etc/nixos#$(hostname) --impure";
-          nrbs = "nh os switch /etc/nixos -H \"$(hostname)\"";
-          nrbsu = "sudo nix flake update && sudo nixos-rebuild boot --flake path:/etc/nixos#$(hostname) --impure";
-          nfu = "nix flake update";
-        };
       };
 
       programs.git = {

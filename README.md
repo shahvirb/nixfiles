@@ -54,7 +54,8 @@ From the fresh NixOS machine:
    sudo tar -xzf <machine-name>-nixos.tar.gz -C /etc/nixos
    ```
 
-4. Apply the bundled configuration:
+4. Apply the bundled configuration with the bootstrap command. `nh` is not
+   available until this configuration has been activated:
 
    ```bash
    sudo nixos-rebuild switch --flake /etc/nixos#$(hostname) --impure
@@ -67,6 +68,16 @@ From the fresh NixOS machine:
    sudo nixos-rebuild switch --flake /etc/nixos#<machine-name> --impure
    ```
 
+5. Start a new login shell so the `NH_FLAKE` environment variable provided by
+   `programs.nh.flake` is available. For subsequent changes, use:
+
+   ```bash
+   nh os switch --impure
+   ```
+
+   If the machine hostname does not match the host directory, select it
+   explicitly with `nh os switch -H <machine-name> --impure`.
+
 The rebuild activates the selected host configuration and creates a NixOS
 generation. Keep the generated files on the machine if the configuration imports
 them; they are ignored by Git and are not recreated by `nixos-rebuild`.
@@ -75,7 +86,7 @@ them; they are ignored by Git and are not recreated by `nixos-rebuild`.
 
 | Description | Command |
 |-------------|---------|
-| Rebuild and switch | ```sudo nixos-rebuild switch --flake path:.```|
+| Rebuild and switch | ```nh os switch --impure```|
 | Flake update | ```sudo nix flake update``` |
 | See the value of an option and how it's being set | ```nixos-option networking.hostName``` |
 | [Using the Nix repl to see options and values](https://jorel.dev/NixOS4Noobs/options.html#method-3-using-the-nix-repl) | ```nix repl path:.``` |

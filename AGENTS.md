@@ -15,8 +15,17 @@ The flake builds all hosts in parallel. Select a host via the `#hostname` suffix
 
 Apply the configuration with:
 ```bash
+nh os switch --impure
+```
+
+On a fresh machine, `nh` is not available until the first configuration has
+been activated. Bootstrap it with:
+```bash
 sudo nixos-rebuild switch --flake /etc/nixos#$(hostname) --impure
 ```
+
+Start a new login shell after that rebuild so the `NH_FLAKE` environment
+variable is available, then use `nh os switch --impure` for subsequent changes.
 
 ## Common Tasks with opencode
 

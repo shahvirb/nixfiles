@@ -38,6 +38,11 @@ with lib;
       # This is needed for VSCode remote support. Read: https://nixos.wiki/wiki/Visual_Studio_Code
       programs.nix-ld.enable = true;
 
+      programs.nh = {
+        enable = true;
+        flake = "/etc/nixos";
+      };
+
   
       services.openssh.enable = mkDefault true;
       services.tailscale.enable = mkDefault true;

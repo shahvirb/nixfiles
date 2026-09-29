@@ -30,7 +30,10 @@ The audit begins with a remote `dry-activate` against the target host. It compar
 ## First Time Bootstrapping
 1. Use remote deployment to initially set up the `radon` host.
 2. Continue with the following steps on the host machine.
-2. git pull shahvirb/nixfiles then do a local `nrbs`
-3. Do `op signin` to authenticate with your 1Password account.
-4. `op-unpack.sh` && `nrbs`
-5. Reboot
+3. `git pull shahvirb/nixfiles`
+4. Use `nh os switch --impure`. If `nh` is not available yet, bootstrap it
+   with `sudo nixos-rebuild switch --flake /etc/nixos#radon --impure`, then
+   start a new login shell and retry `nh os switch --impure`.
+5. Do `op signin` to authenticate with your 1Password account.
+6. `op-unpack.sh` && `nh os switch --impure`
+7. Reboot
