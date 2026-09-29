@@ -5,7 +5,7 @@
   
   users.users.${userSettings.username} = {
     openssh.authorizedKeys.keys  = [
-      "op://Dev - Home Lab/my homelab primary key/public key"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAsjAWYBHRoIcKEIfVw24wpbf28HGY0/EfTBoW4Eotcz"
     ];
   };
 }
